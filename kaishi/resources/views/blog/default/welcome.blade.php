@@ -45,13 +45,7 @@
             @endforeach
 
             <div class="blog-pagination">
-              <ul class="justify-content-center">
-                <li class="disabled"><i aria-hidden='true' class="icofont-rounded-left"></i></li>
-                <li><a href="#">1</a></li>
-                <li class="active"><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-                <li><a href="#"><i aria-hidden='true' class="icofont-rounded-right"></i></a></li>
-              </ul>
+              {{ $posts->links() }}
             </div>
 
           </div><!-- End blog entries list -->

@@ -1,0 +1,36 @@
+version: "3.8"
+services:
+  blog_app:
+    container_name: blog_app
+    build:
+      context: ./kaishi
+    ports:
+      - "9000"
+    environment:
+      SERVICE_NAME: blog_app
+      SERVICE_TAGS: dev
+    working_dir: /var/www
+    volumes:
+      - ./kaishi:/var/www
+    networks:
+      - app-network
+
+  blog_nginx:
+    image: nginx:alpine
+    volumes:
+      - ./kaishi:/var/www
+      - ./nginx/conf.d/:/etc/nginx/conf.d/
+    ports:
+      - "8080:80"
+    depends_on:
+      - blog_app
+    networks:
+      - app-network
+    
+    
+#Docker Networks
+networks:
+  app-network:
+    driver: bridge
+ 
+
