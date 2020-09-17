@@ -1,4 +1,4 @@
-FROM php:7.3-fpm
+FROM php:7.4-fpm
 
 # Copy composer.lock and composer.json
 COPY composer.lock composer.json /var/www/
@@ -38,7 +38,9 @@ RUN chmod -R 755 /var/www
 # Copy existing application directory contents
 COPY ./ /var/www/
 
-RUN chmod -R 755 /var/www/storage
+RUN composer install
+
+RUN chmod -R 777 /var/www/storage
 # # Change current user to www
 # USER www-data
 
