@@ -15,7 +15,13 @@
                 }
             },
             "entryPoint": null,
-            "portMappings": [],
+            "portMappings": [
+                {
+                    "hostPort": 9000,
+                    "protocol": "tcp",
+                    "containerPort": 9000
+                }
+            ],
             "command": null,
             "linuxParameters": null,
             "cpu": 0,
@@ -32,7 +38,12 @@
                 {
                     "readOnly": null,
                     "containerPath": "/var/www",
-                    "sourceVolume": "kaishi-data"
+                    "sourceVolume": "app-data"
+                },
+                {
+                    "readOnly": null,
+                    "containerPath": "/var/www/nginx/conf.d",
+                    "sourceVolume": "nginx-conf"
                 }
             ],
             "workingDirectory": "/var/www",
@@ -90,14 +101,14 @@
             "dnsServers": null,
             "mountPoints": [
                 {
-                    "readOnly": null,
+                    "readOnly": true,
                     "containerPath": "/var/www",
-                    "sourceVolume": "kaishi-data"
+                    "sourceVolume": "app-data"
                 },
                 {
-                    "readOnly": null,
-                    "containerPath": "/etc/nginx/conf.d/",
-                    "sourceVolume": "nginx-config"
+                    "readOnly": true,
+                    "containerPath": "/etc/nginx/conf.d",
+                    "sourceVolume": "nginx-conf"
                 }
             ],
             "workingDirectory": null,
@@ -105,7 +116,12 @@
             "dockerSecurityOptions": null,
             "memory": null,
             "memoryReservation": 256,
-            "volumesFrom": [],
+            "volumesFrom": [
+                {
+                    "sourceContainer": "kaishi-app-container",
+                    "readOnly": true
+                }
+            ],
             "stopTimeout": null,
             "image": "nginx:alpine",
             "startTimeout": null,
@@ -120,7 +136,7 @@
             "extraHosts": null,
             "pseudoTerminal": null,
             "user": null,
-            "readonlyRootFilesystem": null,
+            "readonlyRootFilesystem": false,
             "dockerLabels": null,
             "systemControls": null,
             "privileged": null,
@@ -133,7 +149,7 @@
     "compatibilities": [
         "EC2"
     ],
-    "taskDefinitionArn": "arn:aws:ecs:eu-west-1:853497131747:task-definition/kaishi-app:9",
+    "taskDefinitionArn": "arn:aws:ecs:eu-west-1:853497131747:task-definition/kaishi-app:17",
     "family": "kaishi-app",
     "requiresAttributes": [
         {
@@ -191,24 +207,24 @@
     ],
     "networkMode": null,
     "cpu": null,
-    "revision": 9,
+    "revision": 17,
     "status": "ACTIVE",
     "inferenceAccelerators": null,
     "proxyConfiguration": null,
     "volumes": [
         {
             "efsVolumeConfiguration": null,
-            "name": "kaishi-data",
+            "name": "app-data",
             "host": {
-                "sourcePath": "/nginx/conf.d/"
+                "sourcePath": null
             },
             "dockerVolumeConfiguration": null
         },
         {
             "efsVolumeConfiguration": null,
-            "name": "nginx-config",
+            "name": "nginx-conf",
             "host": {
-                "sourcePath": "/var/www/"
+                "sourcePath": null
             },
             "dockerVolumeConfiguration": null
         }
