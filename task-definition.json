@@ -126,7 +126,12 @@
             "image": "nginx:alpine",
             "startTimeout": null,
             "firelensConfiguration": null,
-            "dependsOn": null,
+            "dependsOn": [
+                {
+                    "containerName": "kaishi-app-container",
+                    "condition": "START"
+                }
+            ],
             "disableNetworking": null,
             "interactive": null,
             "healthCheck": null,
@@ -149,7 +154,7 @@
     "compatibilities": [
         "EC2"
     ],
-    "taskDefinitionArn": "arn:aws:ecs:eu-west-1:853497131747:task-definition/kaishi-app:17",
+    "taskDefinitionArn": "arn:aws:ecs:eu-west-1:853497131747:task-definition/kaishi-app:21",
     "family": "kaishi-app",
     "requiresAttributes": [
         {
@@ -198,6 +203,12 @@
             "targetId": null,
             "targetType": null,
             "value": null,
+            "name": "ecs.capability.container-ordering"
+        },
+        {
+            "targetId": null,
+            "targetType": null,
+            "value": null,
             "name": "ecs.capability.execution-role-ecr-pull"
         }
     ],
@@ -207,7 +218,7 @@
     ],
     "networkMode": null,
     "cpu": null,
-    "revision": 17,
+    "revision": 21,
     "status": "ACTIVE",
     "inferenceAccelerators": null,
     "proxyConfiguration": null,
