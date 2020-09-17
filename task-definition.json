@@ -55,9 +55,6 @@
             "interactive": null,
             "healthCheck": null,
             "essential": true,
-            "links": [
-                "kaishi-app-container"
-            ],
             "hostname": null,
             "extraHosts": null,
             "pseudoTerminal": null,
@@ -132,7 +129,9 @@
             "interactive": null,
             "healthCheck": null,
             "essential": true,
-            "links": null,
+            "links": [
+                "kaishi-app-container"
+            ],
             "hostname": null,
             "extraHosts": null,
             "pseudoTerminal": null,
