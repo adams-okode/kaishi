@@ -5,13 +5,26 @@
         {
             "dnsSearchDomains": null,
             "environmentFiles": null,
-            "logConfiguration": null,
+            "logConfiguration": {
+                "logDriver": "awslogs",
+                "secretOptions": null,
+                "options": {
+                    "awslogs-group": "/ecs/kaishi-app",
+                    "awslogs-region": "eu-west-1",
+                    "awslogs-stream-prefix": "ecs"
+                }
+            },
             "entryPoint": null,
             "portMappings": [],
             "command": null,
             "linuxParameters": null,
             "cpu": 0,
-            "environment": [],
+            "environment": [
+                {
+                    "name": "SERVICE_NAME",
+                    "value": "kaishi-app-container"
+                }
+            ],
             "resourceRequirements": null,
             "ulimits": null,
             "dnsServers": null,
@@ -29,6 +42,7 @@
             "memoryReservation": 300,
             "volumesFrom": [],
             "stopTimeout": null,
+            "image": "853497131747.dkr.ecr.eu-west-1.amazonaws.com/kaishi-app:latest",
             "startTimeout": null,
             "firelensConfiguration": null,
             "dependsOn": null,
@@ -50,7 +64,15 @@
         {
             "dnsSearchDomains": null,
             "environmentFiles": null,
-            "logConfiguration": null,
+            "logConfiguration": {
+                "logDriver": "awslogs",
+                "secretOptions": null,
+                "options": {
+                    "awslogs-group": "/ecs/kaishi-app",
+                    "awslogs-region": "eu-west-1",
+                    "awslogs-stream-prefix": "ecs"
+                }
+            },
             "entryPoint": null,
             "portMappings": [
                 {
@@ -111,14 +133,32 @@
     "compatibilities": [
         "EC2"
     ],
-    "taskDefinitionArn": "arn:aws:ecs:eu-west-1:853497131747:task-definition/kaishi-app:3",
+    "taskDefinitionArn": "arn:aws:ecs:eu-west-1:853497131747:task-definition/kaishi-app:9",
     "family": "kaishi-app",
     "requiresAttributes": [
         {
             "targetId": null,
             "targetType": null,
             "value": null,
+            "name": "com.amazonaws.ecs.capability.logging-driver.awslogs"
+        },
+        {
+            "targetId": null,
+            "targetType": null,
+            "value": null,
+            "name": "ecs.capability.execution-role-awslogs"
+        },
+        {
+            "targetId": null,
+            "targetType": null,
+            "value": null,
             "name": "com.amazonaws.ecs.capability.ecr-auth"
+        },
+        {
+            "targetId": null,
+            "targetType": null,
+            "value": null,
+            "name": "com.amazonaws.ecs.capability.docker-remote-api.1.19"
         },
         {
             "targetId": null,
@@ -151,7 +191,7 @@
     ],
     "networkMode": null,
     "cpu": null,
-    "revision": 3,
+    "revision": 9,
     "status": "ACTIVE",
     "inferenceAccelerators": null,
     "proxyConfiguration": null,
@@ -160,7 +200,7 @@
             "efsVolumeConfiguration": null,
             "name": "kaishi-data",
             "host": {
-                "sourcePath": ""
+                "sourcePath": "/nginx/conf.d/"
             },
             "dockerVolumeConfiguration": null
         },
@@ -168,7 +208,7 @@
             "efsVolumeConfiguration": null,
             "name": "nginx-config",
             "host": {
-                "sourcePath": "nginx/conf.d"
+                "sourcePath": "/var/www/"
             },
             "dockerVolumeConfiguration": null
         }
