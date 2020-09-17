@@ -69,17 +69,25 @@ jobs:
           aws-region: eu-west-1
 
       - name: Fill in the new image ID in the Amazon ECS task definition
-        id: task-def
+        id: render-kaishi-app-container
         uses: aws-actions/amazon-ecs-render-task-definition@v1
         with:
           task-definition: task-definition.json
           container-name: kaishi-app-container
           image: ${{ steps.build-image.outputs.image }}
 
+      - name: Modify Amazon ECS task definition with second container
+        id: render-nginx-container
+        uses: aws-actions/amazon-ecs-render-task-definition@v1
+        with:
+          task-definition: ${{ steps.render-kaishi-app-container.outputs.task-definition }}
+          container-name: kaishi-proxy
+          image: nginx:alpine
+
       - name: Deploy Amazon ECS task definition
         uses: aws-actions/amazon-ecs-deploy-task-definition@v1
         with:
-          task-definition: ${{ steps.task-def.outputs.task-definition }}
+          task-definition: ${{ steps.render-nginx-container.outputs.task-definition }}
           service: kaishi-app-service
           cluster: kaishi-cluster
           # wait-for-service-stability: true

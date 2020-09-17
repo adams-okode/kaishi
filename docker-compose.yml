@@ -11,15 +11,15 @@ services:
       SERVICE_TAGS: dev
     working_dir: /var/www
     volumes:
-      - ./kaishi:/var/www
+      - ./:/var/www
     networks:
       - app-network
 
   blog_nginx:
     image: nginx:alpine
     volumes:
-      - ./kaishi:/var/www
-      - ./kaishi/nginx/conf.d/:/etc/nginx/conf.d/
+      - ./:/var/www
+      - ./nginx/conf.d/:/etc/nginx/conf.d/
     ports:
       - "8080:80"
     depends_on:
