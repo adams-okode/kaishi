@@ -160,7 +160,7 @@
             "efsVolumeConfiguration": null,
             "name": "kaishi-data",
             "host": {
-                "sourcePath": "./"
+                "sourcePath": ""
             },
             "dockerVolumeConfiguration": null
         },
@@ -168,7 +168,7 @@
             "efsVolumeConfiguration": null,
             "name": "nginx-config",
             "host": {
-                "sourcePath": "./nginx/conf.d"
+                "sourcePath": "nginx/conf.d"
             },
             "dockerVolumeConfiguration": null
         }
