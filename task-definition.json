@@ -15,13 +15,7 @@
                 }
             },
             "entryPoint": null,
-            "portMappings": [
-                {
-                    "hostPort": 9000,
-                    "protocol": "tcp",
-                    "containerPort": 9000
-                }
-            ],
+            "portMappings": [],
             "command": null,
             "linuxParameters": null,
             "cpu": 0,
@@ -61,7 +55,9 @@
             "interactive": null,
             "healthCheck": null,
             "essential": true,
-            "links": null,
+            "links": [
+                "kaishi-app-container"
+            ],
             "hostname": null,
             "extraHosts": null,
             "pseudoTerminal": null,
