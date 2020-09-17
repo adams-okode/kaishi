@@ -38,6 +38,7 @@ RUN chmod -R 755 /var/www
 # Copy existing application directory contents
 COPY ./ /var/www/
 
+RUN chmod -R 755 /var/www/storage
 # # Change current user to www
 # USER www-data
 

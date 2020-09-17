@@ -27,7 +27,7 @@ name:  Kaishi App
 on:
   push:
     paths:
-      - kaishi/**
+      - /**
     branches:
       - master
 
@@ -56,7 +56,7 @@ jobs:
         run: |
           docker build \
             -t $CONTAINER_IMAGE \
-            -t $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$CONTAINER_IMAGE ./consul/consul-cluster-1
+            -t $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$CONTAINER_IMAGE .
           echo "::set-output name=image::$AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$CONTAINER_IMAGE"
       
       - name: Push To Amazon ECR
@@ -74,7 +74,7 @@ jobs:
         id: task-def
         uses: aws-actions/amazon-ecs-render-task-definition@v1
         with:
-          task-definition: kaishi/task-definition.json
+          task-definition: task-definition.json
           container-name: kaishi-app-container
           image: ${{ steps.build-image.outputs.image }}
 

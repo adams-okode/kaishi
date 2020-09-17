@@ -19,7 +19,7 @@ services:
     image: nginx:alpine
     volumes:
       - ./kaishi:/var/www
-      - ./nginx/conf.d/:/etc/nginx/conf.d/
+      - ./kaishi/nginx/conf.d/:/etc/nginx/conf.d/
     ports:
       - "8080:80"
     depends_on:
