@@ -44,6 +44,7 @@ RUN chmod -R 777 /var/www/storage
 # # Change current user to www
 # USER www-data
 
+
 # Expose port 9000 and start php-fpm server
 EXPOSE 9000
 
