@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Blog;
 use App\Http\Controllers\Controller;
 use App\Models\MPost;
 use Illuminate\Http\Request;
+use GoDaddyDomainsClient\Configuration as GoDaddyConfiguration;
 
 class HomeController extends Controller
 {

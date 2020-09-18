@@ -7,6 +7,16 @@
         "laravel"
     ],
     "license": "MIT",
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://larapack.io"
+        },
+        {
+            "type": "path",
+            "url": "packages/godaddy"
+        }
+    ],
     "require": {
         "php": "^7.3",
         "fideloper/proxy": "^4.2",
@@ -16,7 +26,8 @@
         "laravel/framework": "^8.0",
         "laravel/tinker": "^2.0",
         "livewire/livewire": "^2.2",
-        "tcg/voyager": "^1.4"
+        "tcg/voyager": "^1.4",
+        "adams-okode/godaddy-api-client": "*"
     },
     "require-dev": {
         "facade/ignition": "^2.3.6",
@@ -60,11 +71,6 @@
         "post-create-project-cmd": [
             "@php artisan key:generate --ansi"
         ]
-    },
-    "repositories": {
-        "hooks": {
-            "type": "composer",
-            "url": "https://larapack.io"
-        }
     }
+    
 }

@@ -24,7 +24,7 @@ class VoyagerUserController extends VoyagerBaseController
     }
 
     // POST BR(E)AD
-    public function update(Request $request, $id)
+    public function update(Request $request, $account, $id)
     {
         if (Auth::user()->getKey() == $id) {
             $request->merge([

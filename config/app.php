@@ -165,6 +165,7 @@ return [
         /*
          * Package Service Providers...
          */
+        GoDaddyDomainsClient\GodaddyDomainsServiceProvider::class,
         
         /*
          * Application Service Providers...
