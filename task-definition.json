@@ -150,7 +150,7 @@
     "compatibilities": [
         "EC2"
     ],
-    "taskDefinitionArn": "arn:aws:ecs:eu-west-1:853497131747:task-definition/kaishi-app:31",
+    "taskDefinitionArn": "arn:aws:ecs:eu-west-1:853497131747:task-definition/kaishi-app:36",
     "family": "kaishi-app",
     "requiresAttributes": [
         {
@@ -181,13 +181,13 @@
             "targetId": null,
             "targetType": null,
             "value": null,
-            "name": "com.amazonaws.ecs.capability.docker-remote-api.1.17"
+            "name": "com.amazonaws.ecs.capability.docker-remote-api.1.21"
         },
         {
             "targetId": null,
             "targetType": null,
             "value": null,
-            "name": "com.amazonaws.ecs.capability.docker-remote-api.1.21"
+            "name": "ecs.capability.docker-plugin.local"
         },
         {
             "targetId": null,
@@ -205,6 +205,12 @@
             "targetId": null,
             "targetType": null,
             "value": null,
+            "name": "com.amazonaws.ecs.capability.docker-remote-api.1.25"
+        },
+        {
+            "targetId": null,
+            "targetType": null,
+            "value": null,
             "name": "ecs.capability.execution-role-ecr-pull"
         }
     ],
@@ -214,7 +220,7 @@
     ],
     "networkMode": null,
     "cpu": null,
-    "revision": 31,
+    "revision": 36,
     "status": "ACTIVE",
     "inferenceAccelerators": null,
     "proxyConfiguration": null,
@@ -222,18 +228,26 @@
         {
             "efsVolumeConfiguration": null,
             "name": "app-data",
-            "host": {
-                "sourcePath": "/kaishi-data"
-            },
-            "dockerVolumeConfiguration": null
+            "host": null,
+            "dockerVolumeConfiguration": {
+                "autoprovision": null,
+                "labels": null,
+                "scope": "task",
+                "driver": "local",
+                "driverOpts": null
+            }
         },
         {
             "efsVolumeConfiguration": null,
             "name": "nginx-conf",
-            "host": {
-                "sourcePath": "/kaishi-nginx"
-            },
-            "dockerVolumeConfiguration": null
+            "host": null,
+            "dockerVolumeConfiguration": {
+                "autoprovision": null,
+                "labels": null,
+                "scope": "task",
+                "driver": "local",
+                "driverOpts": null
+            }
         }
     ]
 }
