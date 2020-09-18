@@ -40,7 +40,7 @@
                     "sourceVolume": "nginx-conf"
                 }
             ],
-            "workingDirectory": "/var/www",
+            "workingDirectory": null,
             "secrets": null,
             "dockerSecurityOptions": null,
             "memory": null,
