@@ -10,7 +10,7 @@ use TCG\Voyager\Facades\Voyager;
 
 
 
-Route::domain('{account}.blogger.adams')->middleware([
+Route::domain('{account}.'.env('APP_DOMAIN'))->middleware([
     'subdomain.route.handler',
 ])->group(function () {
     

@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Route;
 |
  */
 
-Route::domain('{account}.blogger.adams')->middleware([
+Route::domain('{account}.'.env('APP_DOMAIN'))->middleware([
     'subdomain.route.handler',
 ])->group(function () {
     Route::get('/', [App\Http\Controllers\Blog\HomeController::class, 'index'])->name('blog.front.home');

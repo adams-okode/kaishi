@@ -12,4 +12,8 @@ use Illuminate\Support\Facades\Route;
 |
  */
 
-Route::get('/', [App\Http\Controllers\Website\HomeController::class, 'index'])->name('site.front.home');
+Route::domain(env('APP_DOMAIN'))->middleware([
+    'subdomain.route.handler',
+])->group(function () {
+    Route::get('/', [App\Http\Controllers\Website\HomeController::class, 'index'])->name('site.front.home');
+});
