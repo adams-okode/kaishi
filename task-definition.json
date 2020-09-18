@@ -55,6 +55,7 @@
             "interactive": null,
             "healthCheck": null,
             "essential": true,
+            "links": null,
             "hostname": null,
             "extraHosts": null,
             "pseudoTerminal": null,
@@ -149,7 +150,7 @@
     "compatibilities": [
         "EC2"
     ],
-    "taskDefinitionArn": "arn:aws:ecs:eu-west-1:853497131747:task-definition/kaishi-app:21",
+    "taskDefinitionArn": "arn:aws:ecs:eu-west-1:853497131747:task-definition/kaishi-app:31",
     "family": "kaishi-app",
     "requiresAttributes": [
         {
@@ -213,7 +214,7 @@
     ],
     "networkMode": null,
     "cpu": null,
-    "revision": 21,
+    "revision": 31,
     "status": "ACTIVE",
     "inferenceAccelerators": null,
     "proxyConfiguration": null,
@@ -222,7 +223,7 @@
             "efsVolumeConfiguration": null,
             "name": "app-data",
             "host": {
-                "sourcePath": null
+                "sourcePath": "/kaishi_data"
             },
             "dockerVolumeConfiguration": null
         },
@@ -230,7 +231,7 @@
             "efsVolumeConfiguration": null,
             "name": "nginx-conf",
             "host": {
-                "sourcePath": null
+                "sourcePath": "/kaishi_data"
             },
             "dockerVolumeConfiguration": null
         }
