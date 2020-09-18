@@ -12,7 +12,6 @@ class HomeController extends Controller
     //
     public function index(Request $request, $account)
     {
-        dd($account);
         $posts = MPost::where('account_id', $account)->paginate(20);
         return view('blog.default.welcome', [ 'posts' => $posts ]);
     }
