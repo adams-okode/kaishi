@@ -44,9 +44,7 @@ RUN cp .env.example .env
 
 RUN php artisan key:generate
 
-RUN chmod -R 777 /var/www/storage
-# # Change current user to www
-# USER www-data
+RUN chown -R www-data:www-data /var/www/storage
 
 # Expose port 9000 and start php-fpm server
 EXPOSE 9000
