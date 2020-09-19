@@ -8,19 +8,17 @@ use TCG\Voyager\Events\RoutingAdminAfter;
 use TCG\Voyager\Events\RoutingAfter;
 use TCG\Voyager\Facades\Voyager;
 
+$namespacePrefix = '\\' . config('voyager.controllers.namespace') . '\\';
 
+Route::get('voyager-assets', ['uses' => $namespacePrefix . 'VoyagerController@assets', 'as' => 'voyager.voyager_assets']);
 
-Route::domain('{account}.'.env('APP_DOMAIN'))->middleware([
+Route::domain('{account}.' . env('APP_DOMAIN'))->middleware([
     'subdomain.route.handler',
-])->group(function () {
-    
-    Route::name('voyager.')->prefix('admin')->group(function () {
+])->group(function () use ($namespacePrefix) {
+
+    Route::name('voyager.')->prefix('admin')->group(function () use ($namespacePrefix) {
 
         event(new Routing());
-
-        $namespacePrefix = '\\' . config('voyager.controllers.namespace') . '\\';
-
-        Route::get('voyager-assets', ['uses' => $namespacePrefix . 'VoyagerController@assets', 'as' => 'voyager_assets']);
 
         Route::get('login', ['uses' => $namespacePrefix . 'VoyagerAuthController@login', 'as' => 'login']);
         Route::post('login', ['uses' => $namespacePrefix . 'VoyagerAuthController@postLogin', 'as' => 'postlogin']);
@@ -132,10 +130,8 @@ Route::domain('{account}.'.env('APP_DOMAIN'))->middleware([
         });
 
         //Asset Routes
-       
 
         event(new RoutingAfter());
     });
 
 });
-

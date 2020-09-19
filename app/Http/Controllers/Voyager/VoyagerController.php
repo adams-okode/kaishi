@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Voyager;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
@@ -11,12 +12,9 @@ use Intervention\Image\Constraint;
 use Intervention\Image\Facades\Image;
 use League\Flysystem\Util;
 use TCG\Voyager\Facades\Voyager;
-use App\Http\Controllers\Controller;
-
 
 class VoyagerController extends Controller
 {
-    
 
     public function index()
     {
@@ -37,17 +35,17 @@ class VoyagerController extends Controller
         $slug = $request->input('type_slug');
         $file = $request->file('image');
 
-        $path = $slug.'/'.date('F').date('Y').'/';
+        $path = $slug . '/' . date('F') . date('Y') . '/';
 
-        $filename = basename($file->getClientOriginalName(), '.'.$file->getClientOriginalExtension());
+        $filename = basename($file->getClientOriginalName(), '.' . $file->getClientOriginalExtension());
         $filename_counter = 1;
 
         // Make sure the filename does not exist, if it does make sure to add a number to the end 1, 2, 3, etc...
-        while (Storage::disk(config('voyager.storage.disk'))->exists($path.$filename.'.'.$file->getClientOriginalExtension())) {
-            $filename = basename($file->getClientOriginalName(), '.'.$file->getClientOriginalExtension()).(string) ($filename_counter++);
+        while (Storage::disk(config('voyager.storage.disk'))->exists($path . $filename . '.' . $file->getClientOriginalExtension())) {
+            $filename = basename($file->getClientOriginalName(), '.' . $file->getClientOriginalExtension()) . (string) ($filename_counter++);
         }
 
-        $fullPath = $path.$filename.'.'.$file->getClientOriginalExtension();
+        $fullPath = $path . $filename . '.' . $file->getClientOriginalExtension();
 
         $ext = $file->guessClientExtension();
 
@@ -74,13 +72,13 @@ class VoyagerController extends Controller
         }
 
         // echo out script that TinyMCE can handle and update the image in the editor
-        return "<script> parent.helpers.setImageValue('".Voyager::image($fullFilename)."'); </script>";
+        return "<script> parent.helpers.setImageValue('" . Voyager::image($fullFilename) . "'); </script>";
     }
 
-    public function assets(Request $request)
+    public function assets(Request $request, $account = null)
     {
-        $path = dirname(__DIR__, 4).'/resources/assets/'.Util::normalizeRelativePath(urldecode($request->path));
-        
+        $path = dirname(__DIR__, 4) . '/resources/assets/' . Util::normalizeRelativePath(urldecode($request->path));
+
         if (File::exists($path)) {
             $mime = '';
             if (Str::endsWith($path, '.js')) {
