@@ -17,7 +17,7 @@ use TCG\Voyager\Facades\Voyager;
 
 class VoyagerBreadController extends Controller
 {
-    public function index($account)
+    public function index()
     {
         $this->authorize('browse_bread');
 
@@ -47,7 +47,7 @@ class VoyagerBreadController extends Controller
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function create(Request $request, $account, $table)
+    public function create(Request $request,  $table)
     {
         $this->authorize('browse_bread');
 
@@ -117,7 +117,7 @@ class VoyagerBreadController extends Controller
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function edit($account, $table)
+    public function edit($table)
     {
         $this->authorize('browse_bread');
 
@@ -148,7 +148,7 @@ class VoyagerBreadController extends Controller
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function update(Request $request, $account, $id)
+    public function update(Request $request,  $id)
     {
         $this->authorize('browse_bread');
 
@@ -185,7 +185,7 @@ class VoyagerBreadController extends Controller
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function destroy($account, $id)
+    public function destroy( $id)
     {
         $this->authorize('browse_bread');
 
@@ -346,7 +346,7 @@ class VoyagerBreadController extends Controller
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function deleteRelationship($account, $id)
+    public function deleteRelationship( $id)
     {
         Voyager::model('DataRow')->destroy($id);
 

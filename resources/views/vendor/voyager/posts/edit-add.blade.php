@@ -69,8 +69,7 @@
                             @endphp
 
                             @foreach($dataTypeRows as $row)
-                                @if(in_array($row->field, ['account_id', 'post_belongsto_user_relationship']))
-                                    <input type="hidden" name="account_id" value="{{ request()->account }}">                          
+                                @if(in_array($row->field, ['account_id', 'post_belongsto_user_relationship']))                         
                                     <input type="hidden" name="user_id" value="{{ Auth::user()->id }}"> 
                                 @endif
                             @endforeach
@@ -119,6 +118,23 @@
                                                         {!! app('voyager')->formField($row, $dataType, $dataTypeContent) !!}
                                                     @endif
 
+                                                    @foreach (app('voyager')->afterFormFields($row, $dataType, $dataTypeContent) as $after)
+                                                        {!! $after->handle($row, $dataType, $dataTypeContent) !!}
+                                                    @endforeach
+                                                    @if ($errors->has($row->field))
+                                                        @foreach ($errors->get($row->field) as $error)
+                                                            <span class="help-block">{{ $error }}</span>
+                                                        @endforeach
+                                                    @endif
+                                                </div>
+                                            @endif
+
+                                            @if(in_array($row->field, ['post_belongsto_site_relationship']))
+                                                <div class="form-group @if($row->type == 'hidden') hidden @endif col-md-{{ $display_options->width ?? 12 }} {{ $errors->has($row->field) ? 'has-error' : '' }}" @if(isset($display_options->id)){{ "id=$display_options->id" }}@endif>
+                                                    {{ $row->slugify }}
+                                                    <label class="control-label" for="name">{{ $row->getTranslatedAttribute('display_name') }}</label>
+                                                    @include('vendor.voyager.posts.relationship', ['options' => $row->details])
+                                                   
                                                     @foreach (app('voyager')->afterFormFields($row, $dataType, $dataTypeContent) as $after)
                                                         {!! $after->handle($row, $dataType, $dataTypeContent) !!}
                                                     @endforeach

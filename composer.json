@@ -15,19 +15,25 @@
         {
             "type": "path",
             "url": "packages/godaddy"
+        },
+        {
+            "type": "path",
+            "url": "packages/voyager"
         }
     ],
     "require": {
         "php": "^7.3",
+        "adams-okode/godaddy-api-client": "*",
+        "algolia/algoliasearch-client-php": "^2.2",
         "fideloper/proxy": "^4.2",
         "fruitcake/laravel-cors": "^2.0",
         "ghostff/php-visitors-tracking": "^1.0",
         "guzzlehttp/guzzle": "^7.0.1",
+        "kaishi/voyager": "*",
         "laravel/framework": "^8.0",
+        "laravel/scout": "^8.3",
         "laravel/tinker": "^2.0",
-        "livewire/livewire": "^2.2",
-        "tcg/voyager": "^1.4",
-        "adams-okode/godaddy-api-client": "*"
+        "livewire/livewire": "^2.2"
     },
     "require-dev": {
         "facade/ignition": "^2.3.6",

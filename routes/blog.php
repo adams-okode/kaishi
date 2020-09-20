@@ -12,9 +12,10 @@ use Illuminate\Support\Facades\Route;
 |
  */
 
-Route::domain('{account}.'.env('APP_DOMAIN'))->middleware([
+Route::domain('{account}.' . env('APP_DOMAIN'))->middleware([
     'subdomain.route.handler',
-])->group(function () {
-    Route::get('/', [App\Http\Controllers\Blog\HomeController::class, 'index'])->name('blog.front.home');
-    Route::get('/blog/view/{slug}', [App\Http\Controllers\Blog\HomeController::class, 'read'])->name('blog.front.view');
+])->name('blog.')->group(function () {
+    Route::get('/', [App\Http\Controllers\Blog\HomeController::class, 'index'])->name('front.home');
+    Route::get('/blog/view/{slug}', [App\Http\Controllers\Blog\HomeController::class, 'read'])->name('front.view');
 });
+

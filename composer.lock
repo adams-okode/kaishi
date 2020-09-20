@@ -4,11 +4,11 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "08271360e03cd769e896855c1bea012b",
+    "content-hash": "a48f00bfb778b9bf320fde5b1c9502c4",
     "packages": [
         {
             "name": "adams-okode/godaddy-api-client",
-            "version": "dev-master",
+            "version": "dev-ao",
             "dist": {
                 "type": "path",
                 "url": "packages/godaddy",
@@ -42,6 +42,76 @@
                 "php",
                 "sdk"
             ]
+        },
+        {
+            "name": "algolia/algoliasearch-client-php",
+            "version": "2.7.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/algolia/algoliasearch-client-php.git",
+                "reference": "ce8b35a5aa842ad3e0dc05bbd7aaf5ed82481d71"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/algolia/algoliasearch-client-php/zipball/ce8b35a5aa842ad3e0dc05bbd7aaf5ed82481d71",
+                "reference": "ce8b35a5aa842ad3e0dc05bbd7aaf5ed82481d71",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "ext-json": "*",
+                "ext-mbstring": "*",
+                "php": "^5.3 || ^7.0",
+                "psr/http-message": "^1.0",
+                "psr/log": "^1.0",
+                "psr/simple-cache": "^1.0"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^2.0",
+                "fzaninotto/faker": "^1.8",
+                "phpunit/phpunit": "^4.8",
+                "symfony/yaml": "^2.0 || ^4.0"
+            },
+            "suggest": {
+                "guzzlehttp/guzzle": "If you prefer to use Guzzle HTTP client instead of the Http Client implementation provided by the package"
+            },
+            "bin": [
+                "bin/algolia-doctor"
+            ],
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-2.0": "2.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Algolia\\AlgoliaSearch\\": "src/"
+                },
+                "files": [
+                    "src/Http/Psr7/functions.php",
+                    "src/functions.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Algolia Team",
+                    "email": "contact@algolia.com"
+                }
+            ],
+            "description": "Algolia Search API Client for PHP",
+            "keywords": [
+                "algolia",
+                "api",
+                "client",
+                "php",
+                "search"
+            ],
+            "time": "2020-06-25T08:47:13+00:00"
         },
         {
             "name": "arrilot/laravel-widgets",
@@ -1592,6 +1662,76 @@
             "time": "2020-05-27T16:41:55+00:00"
         },
         {
+            "name": "kaishi/voyager",
+            "version": "dev-ao",
+            "dist": {
+                "type": "path",
+                "url": "packages/voyager",
+                "reference": "a5cea0e1a5fd35d2350d4df83cc1bb3bb4a82326"
+            },
+            "require": {
+                "arrilot/laravel-widgets": "^3.7",
+                "doctrine/dbal": "^2.5",
+                "ext-json": "*",
+                "illuminate/support": "~6.0|~7.0|~8.0",
+                "intervention/image": "^2.4",
+                "larapack/doctrine-support": "~0.1.4",
+                "larapack/voyager-hooks": "~1.2.1",
+                "laravel/ui": ">=1.0",
+                "league/flysystem": "~1.1|~2.0"
+            },
+            "require-dev": {
+                "laravel/browser-kit-testing": ">=5.0.0",
+                "laravel/framework": "~6.0|~7.0|~8.0",
+                "orchestra/testbench": ">=4.0",
+                "orchestra/testbench-browser-kit": ">=4.0",
+                "phpunit/phpcov": ">=6.0",
+                "phpunit/phpunit": ">=8.0"
+            },
+            "suggest": {
+                "laravel/legacy-factories": "Required to run Voyager tests with Laravel 8.x"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "TCG\\Voyager\\VoyagerServiceProvider",
+                        "TCG\\Voyager\\Providers\\VoyagerDummyServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "TCG\\Voyager\\": "src/"
+                }
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "TCG\\Voyager\\Tests\\": "tests/"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Tony Lea",
+                    "email": "tony.lea@thecontrolgroup.com"
+                }
+            ],
+            "description": "A Laravel Admin Package for The Control Group to make your life easier and steer your project in the right direction",
+            "homepage": "https://voyager.devdojo.com/",
+            "keywords": [
+                "admin",
+                "laravel",
+                "panel"
+            ],
+            "support": {
+                "issues": "https://github.com/the-control-group/voyager/issues",
+                "source": "https://github.com/the-control-group/voyager"
+            }
+        },
+        {
             "name": "larapack/doctrine-support",
             "version": "v0.1.9",
             "source": {
@@ -1742,16 +1882,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v8.4.0",
+            "version": "v8.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "1c57ab5e375d0a897c22b29e8352453be514131e"
+                "reference": "5a748eecae35fd453e0b1e4d4b6f4fadf0d3e7ac"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/1c57ab5e375d0a897c22b29e8352453be514131e",
-                "reference": "1c57ab5e375d0a897c22b29e8352453be514131e",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/5a748eecae35fd453e0b1e4d4b6f4fadf0d3e7ac",
+                "reference": "5a748eecae35fd453e0b1e4d4b6f4fadf0d3e7ac",
                 "shasum": ""
             },
             "require": {
@@ -1901,7 +2041,73 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2020-09-16T16:13:13+00:00"
+            "time": "2020-09-18T21:27:11+00:00"
+        },
+        {
+            "name": "laravel/scout",
+            "version": "v8.3.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laravel/scout.git",
+                "reference": "e168e5cf3e26372bcfe770e01577903a6fa05077"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laravel/scout/zipball/e168e5cf3e26372bcfe770e01577903a6fa05077",
+                "reference": "e168e5cf3e26372bcfe770e01577903a6fa05077",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/bus": "^6.0|^7.0|^8.0",
+                "illuminate/contracts": "^6.0|^7.0|^8.0",
+                "illuminate/database": "^6.0|^7.0|^8.0",
+                "illuminate/http": "^6.0|^7.0|^8.0",
+                "illuminate/pagination": "^6.0|^7.0|^8.0",
+                "illuminate/queue": "^6.0|^7.0|^8.0",
+                "illuminate/support": "^6.0|^7.0|^8.0",
+                "php": "^7.2"
+            },
+            "require-dev": {
+                "algolia/algoliasearch-client-php": "^2.2",
+                "mockery/mockery": "^1.0",
+                "phpunit/phpunit": "^8.0|^9.3"
+            },
+            "suggest": {
+                "algolia/algoliasearch-client-php": "Required to use the Algolia engine (^2.2)."
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "8.x-dev"
+                },
+                "laravel": {
+                    "providers": [
+                        "Laravel\\Scout\\ScoutServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Laravel\\Scout\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Taylor Otwell",
+                    "email": "taylor@laravel.com"
+                }
+            ],
+            "description": "Laravel Scout provides a driver based solution to searching your Eloquent models.",
+            "keywords": [
+                "algolia",
+                "laravel",
+                "search"
+            ],
+            "time": "2020-09-01T16:19:15+00:00"
         },
         {
             "name": "laravel/tinker",
@@ -2218,16 +2424,16 @@
         },
         {
             "name": "livewire/livewire",
-            "version": "v2.2.4",
+            "version": "v2.2.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/livewire/livewire.git",
-                "reference": "b1f5eae5ef5f5942d8d334b4ecb718bac580454f"
+                "reference": "ffaa43e02e9b9ae56c8ae16a438b48844f6e9147"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/livewire/livewire/zipball/b1f5eae5ef5f5942d8d334b4ecb718bac580454f",
-                "reference": "b1f5eae5ef5f5942d8d334b4ecb718bac580454f",
+                "url": "https://api.github.com/repos/livewire/livewire/zipball/ffaa43e02e9b9ae56c8ae16a438b48844f6e9147",
+                "reference": "ffaa43e02e9b9ae56c8ae16a438b48844f6e9147",
                 "shasum": ""
             },
             "require": {
@@ -2273,7 +2479,7 @@
                 }
             ],
             "description": "A front-end framework for Laravel.",
-            "time": "2020-09-17T17:38:03+00:00"
+            "time": "2020-09-18T13:55:17+00:00"
         },
         {
             "name": "monolog/monolog",
@@ -2437,16 +2643,16 @@
         },
         {
             "name": "nikic/php-parser",
-            "version": "v4.9.1",
+            "version": "v4.10.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nikic/PHP-Parser.git",
-                "reference": "88e519766fc58bd46b8265561fb79b54e2e00b28"
+                "reference": "1c13d05035deff45f1230ca68bd7d74d621762d9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/88e519766fc58bd46b8265561fb79b54e2e00b28",
-                "reference": "88e519766fc58bd46b8265561fb79b54e2e00b28",
+                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/1c13d05035deff45f1230ca68bd7d74d621762d9",
+                "reference": "1c13d05035deff45f1230ca68bd7d74d621762d9",
                 "shasum": ""
             },
             "require": {
@@ -2485,7 +2691,7 @@
                 "parser",
                 "php"
             ],
-            "time": "2020-08-30T16:15:20+00:00"
+            "time": "2020-09-19T14:52:48+00:00"
         },
         {
             "name": "opis/closure",
@@ -5160,75 +5366,6 @@
             "time": "2020-08-17T07:42:30+00:00"
         },
         {
-            "name": "tcg/voyager",
-            "version": "1.4.x-dev",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/the-control-group/voyager.git",
-                "reference": "79f50ef21e6a0bbef60d25f59d7a74db3902a1e5"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/the-control-group/voyager/zipball/79f50ef21e6a0bbef60d25f59d7a74db3902a1e5",
-                "reference": "79f50ef21e6a0bbef60d25f59d7a74db3902a1e5",
-                "shasum": ""
-            },
-            "require": {
-                "arrilot/laravel-widgets": "^3.7",
-                "doctrine/dbal": "^2.5",
-                "ext-json": "*",
-                "illuminate/support": "~6.0|~7.0|~8.0",
-                "intervention/image": "^2.4",
-                "larapack/doctrine-support": "~0.1.4",
-                "larapack/voyager-hooks": "~1.2.1",
-                "laravel/ui": ">=1.0",
-                "league/flysystem": "~1.1|~2.0"
-            },
-            "require-dev": {
-                "laravel/browser-kit-testing": ">=5.0.0",
-                "laravel/framework": "~6.0|~7.0|~8.0",
-                "orchestra/testbench": ">=4.0",
-                "orchestra/testbench-browser-kit": ">=4.0",
-                "phpunit/phpcov": ">=6.0",
-                "phpunit/phpunit": ">=8.0"
-            },
-            "suggest": {
-                "laravel/legacy-factories": "Required to run Voyager tests with Laravel 8.x"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "TCG\\Voyager\\VoyagerServiceProvider",
-                        "TCG\\Voyager\\Providers\\VoyagerDummyServiceProvider"
-                    ]
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "TCG\\Voyager\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Tony Lea",
-                    "email": "tony.lea@thecontrolgroup.com"
-                }
-            ],
-            "description": "A Laravel Admin Package for The Control Group to make your life easier and steer your project in the right direction",
-            "homepage": "https://voyager.devdojo.com/",
-            "keywords": [
-                "admin",
-                "laravel",
-                "panel"
-            ],
-            "time": "2020-09-09T23:09:10+00:00"
-        },
-        {
             "name": "tijsverkoyen/css-to-inline-styles",
             "version": "2.2.3",
             "source": {
@@ -6283,16 +6420,16 @@
         },
         {
             "name": "phpunit/php-code-coverage",
-            "version": "9.1.10",
+            "version": "9.1.11",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-code-coverage.git",
-                "reference": "5134e2a65ec48e2f7126d12f1503a9889c660bdf"
+                "reference": "c9394cb9d07ecfa9351b96f2e296bad473195f4d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/5134e2a65ec48e2f7126d12f1503a9889c660bdf",
-                "reference": "5134e2a65ec48e2f7126d12f1503a9889c660bdf",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/c9394cb9d07ecfa9351b96f2e296bad473195f4d",
+                "reference": "c9394cb9d07ecfa9351b96f2e296bad473195f4d",
                 "shasum": ""
             },
             "require": {
@@ -6346,7 +6483,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2020-09-18T05:25:29+00:00"
+            "time": "2020-09-19T05:29:17+00:00"
         },
         {
             "name": "phpunit/php-file-iterator",

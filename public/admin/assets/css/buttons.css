@@ -1,0 +1,52 @@
+.btn,
+.navbar .btn {
+    font-weight: 500;
+    line-height: 1.4em;
+    margin-right: 10px;
+    transition: all 0.3s ease;
+    font-size: 16px;
+    color: #fff;
+    box-shadow: unset;
+    letter-spacing: -0.01em;
+}
+
+.voyager .btn.btn-success {
+    background: #2ecc71;
+    color: #fff;
+    border: 0;
+    border-radius: 4px;
+    opacity: 0.9;
+}
+
+.voyager .btn.btn-danger {
+    color: #fff;
+    border: 0;
+    border-radius: 4px;
+    opacity: 0.9;
+}
+
+.voyager .btn.btn-info {
+    color: #fff;
+    border: 0;
+    border-radius: 4px;
+    opacity: 0.9;
+}
+
+.voyager .btn.btn-primary {
+    color: #fff;
+    border: 0;
+    border-radius: 4px;
+    opacity: 0.9;
+}
+
+.voyager .btn.btn-warning {
+    color: #fff;
+    border: 0;
+    border-radius: 4px;
+    opacity: 0.9;
+}
+
+.btn-outline-dark {
+    background: #fff;
+    color: #1c2128;
+}

@@ -117,7 +117,7 @@ class VoyagerDatabaseController extends Controller
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function edit($account, $table)
+    public function edit( $table)
     {
         $this->authorize('browse_database');
 
@@ -237,7 +237,7 @@ class VoyagerDatabaseController extends Controller
      *
      * @return JSON
      */
-    public function show($account, $table)
+    public function show( $table)
     {
         $this->authorize('browse_database');
 
@@ -262,7 +262,7 @@ class VoyagerDatabaseController extends Controller
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function destroy($account, $table)
+    public function destroy( $table)
     {
         $this->authorize('browse_database');
 

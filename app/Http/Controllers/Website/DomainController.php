@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use GoDaddyDomainsClient\ApiException;
 use GoDaddyDomainsClient\Model\DNSRecord;
 use Illuminate\Http\Request;
+use App\Models\Site;
 
 class DomainController extends Controller
 {
@@ -24,9 +25,11 @@ class DomainController extends Controller
         $this->apiInstance = new \GoDaddyDomainsClient\Api\VdomainsApi($this->apiClient);
     }
 
+    
     public function checkDnsZoneAvailability(Request $request)
     {
-        $availability = $this->apiInstance->recordGet($this->domain, DNSRecord::TYPE_CNAME, $request->zoneName, false);
+        $availability = Site::where('site_id', '=', "{$request->name}")
+                            ->get();
         return response()->json($availability);
     }
 
@@ -34,7 +37,7 @@ class DomainController extends Controller
     {
         $record = new DNSRecord();
         $record->setType(DNSRecord::TYPE_CNAME);
-        $record->setName($request->zoneName);
+        $record->setName($request->site_id);
         $record->setData('@');
         $record->setPriority(null);
         $record->setTtl(3600);
@@ -43,8 +46,8 @@ class DomainController extends Controller
         $record->setWeight(null);
         $records = [$record];
         try {
-            $response = $this->apiInstance->recordAddWithHttpInfo($domain, $records);
-            return response()->json($response);
+            $response = $this->apiInstance->recordAddWithHttpInfo($this->domain, $records);
+            return response()->json($this->apiClient->getSerializer()->sanitizeForSerialization($response));
         } catch (ApiException $th) {
             return response()->json([
                 'statusCode' => $th->getCode(),

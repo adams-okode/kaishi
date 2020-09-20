@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', [App\Http\Controllers\Website\HomeController::class, 'index'])->name('site.front.home');
-Route::get('/register', [App\Http\Controllers\Website\HomeController::class, 'register'])->name('site.front.register');
+Route::post('/do/register', [App\Http\Controllers\Website\HomeController::class, 'doRegister'])->name('site.do.front.register');
 
 
 Route::prefix('/site-rest/dns')->group(function () {
