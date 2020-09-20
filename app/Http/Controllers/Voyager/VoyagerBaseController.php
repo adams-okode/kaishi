@@ -360,11 +360,9 @@ class VoyagerBaseController extends Controller
     //
     //****************************************
 
-    public function create(Request $request, $account)
+    public function create(Request $request)
     {
         $slug = $this->getSlug($request);
-
-        // dd($request->all());
 
         $dataType = Voyager::model('DataType')->where('slug', '=', $slug)->first();
 

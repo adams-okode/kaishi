@@ -75,7 +75,7 @@
                         </p>
                         <div id="searchBox" class="form-group form-group-default">
                             <div class="controls">
-                                <input type="email" name="email" id="email" placeholder="Search ..."
+                                <input type="text" name="site_id" id="email" placeholder="Search ..."
                                     class="form-control" oninput="searchDnsRecordExisntense(this)">
                             </div>
 

@@ -10,16 +10,16 @@ use TCG\Voyager\Facades\Voyager;
 
 $namespacePrefix = '\\' . config('voyager.controllers.namespace') . '\\';
 
-Route::get('voyager-assets', ['uses' => $namespacePrefix . 'VoyagerController@assets', 'as' => 'voyager.voyager_assets']);
 
-Route::domain('{account}.' . env('APP_DOMAIN'))->middleware([
-    'subdomain.route.handler',
+Route::domain('app.' . env('APP_DOMAIN'))->middleware([
+   'subdomain.route.excempt'
 ])->group(function () use ($namespacePrefix) {
 
-    Route::name('voyager.')->prefix('admin')->group(function () use ($namespacePrefix) {
+    Route::name('voyager.')->group(function () use ($namespacePrefix) {
 
         event(new Routing());
 
+        Route::get('/register', [App\Http\Controllers\Website\HomeController::class, 'register'])->name('register');
         Route::get('login', ['uses' => $namespacePrefix . 'VoyagerAuthController@login', 'as' => 'login']);
         Route::post('login', ['uses' => $namespacePrefix . 'VoyagerAuthController@postLogin', 'as' => 'postlogin']);
 
@@ -27,7 +27,7 @@ Route::domain('{account}.' . env('APP_DOMAIN'))->middleware([
             event(new RoutingAdmin());
 
             // Main Admin and Logout Route
-            Route::get('dash', ['uses' => $namespacePrefix . 'VoyagerController@index', 'as' => 'dashboard']);
+            Route::get('/', ['uses' => $namespacePrefix . 'VoyagerController@index', 'as' => 'dashboard']);
             Route::post('logout', ['uses' => $namespacePrefix . 'VoyagerController@logout', 'as' => 'logout']);
             Route::post('upload', ['uses' => $namespacePrefix . 'VoyagerController@upload', 'as' => 'upload']);
             Route::get('profile', ['uses' => $namespacePrefix . 'VoyagerUserController@profile', 'as' => 'profile']);
@@ -50,10 +50,8 @@ Route::domain('{account}.' . env('APP_DOMAIN'))->middleware([
                     Route::post($dataType->slug, $breadController . '@store')->name($dataType->slug . '.store');
                     Route::get($dataType->slug . '/{id}', $breadController . '@show')->name($dataType->slug . '.show');
                     Route::get($dataType->slug . '/{id}/edit', $breadController . '@edit')->name($dataType->slug . '.edit');
-                    Route::patch($dataType->slug . '/{id}', $breadController . '@update')->name($dataType->slug . '.update');
+                    Route::put($dataType->slug . '/{id}', $breadController . '@update')->name($dataType->slug . '.update');
                     Route::delete($dataType->slug . '/{id}', $breadController . '@destroy')->name($dataType->slug . '.destroy');
-
-                    // Route::resource($dataType->slug, $breadController, ['parameters' => [$dataType->slug => 'id']]);
                 }
             } catch (\InvalidArgumentException $e) {
                 throw new \InvalidArgumentException("Custom routes hasn't been configured because: " . $e->getMessage(), 1);
@@ -143,6 +141,8 @@ Route::domain('{account}.' . env('APP_DOMAIN'))->middleware([
 
         //Asset Routes
 
+        Route::get('voyager-assets', ['uses' => $namespacePrefix . 'VoyagerController@assets', 'as' => 'voyager_assets']);
+        
         event(new RoutingAfter());
     });
 

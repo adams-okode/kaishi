@@ -3,15 +3,16 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Voyager\VoyagerBaseController;
-use App\Models\Site;
+use App\Models\MPost;
 use Illuminate\Http\Request;
-use TCG\Voyager\Facades\Voyager;
 use TCG\Voyager\Events\BreadDataAdded;
+use TCG\Voyager\Facades\Voyager;
 use Illuminate\Support\Facades\Auth;
 
 
-class SiteController extends VoyagerBaseController
+class PostController extends VoyagerBaseController
 {
+
     public function index(Request $request)
     {
         // GET THE SLUG, ex. 'posts', 'pages', etc.
@@ -96,7 +97,7 @@ class SiteController extends VoyagerBaseController
             $model = false;
         }
 
-        $dataTypeContent = $dataTypeContent->whereIn('owner_id', Auth::user()->id);
+        $dataTypeContent = $dataTypeContent->whereIn('site_id', Auth::user()->sites->pluck('id')->toArray());
 
         // Check if BREAD is Translatable
         $isModelTranslatable = is_bread_translatable($model);
@@ -176,27 +177,23 @@ class SiteController extends VoyagerBaseController
     public function store(Request $request)
     {
         // Validate fields with ajax
-        $slug = 'sites';
-
-        $request->merge([
-            'owner_id' => Auth::user()->id,
-        ]);
+        $slug = 'posts';
 
         $dataType = Voyager::model('DataType')->where('slug', '=', $slug)->first();
 
-        $data = $this->insertUpdateData($request, 'sites', $dataType->rows, new Site());
+        $data = $this->insertUpdateData($request, 'posts', $dataType->rows, new MPost());
 
         event(new BreadDataAdded($dataType, $data));
 
         if (!$request->has('_tagging')) {
             if (auth()->user()->can('browse', $data)) {
-                $redirect = redirect()->route("voyager.sites.index");
+                $redirect = redirect()->route("voyager.posts.index");
             } else {
                 $redirect = redirect()->back();
             }
 
             return $redirect->with([
-                'message' => __('voyager::generic.successfully_added_new') . " Site",
+                'message' => __('voyager::generic.successfully_added_new') . " Post",
                 'alert-type' => 'success',
             ]);
         } else {

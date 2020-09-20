@@ -28,6 +28,7 @@
 
   <!-- Template Main CSS File -->
   <link href="{{ asset('blog/default/assets/css/style.css') }}" rel="stylesheet">
+  <link href="{{ asset('blog/default/assets/css/reset.css') }}" rel="stylesheet">
 </head>
 
 <body>

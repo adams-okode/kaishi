@@ -5,10 +5,15 @@ namespace App\Http\Controllers\Website;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use TCG\Voyager\Facades\Voyager;
+use App\Models\Site;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 
 class HomeController extends Controller
 {
+
     public function index(Request $request)
     {
         return view('site.welcome', []);
@@ -16,26 +21,45 @@ class HomeController extends Controller
 
     public function register(Request $request)
     {
+        if (!is_null(Auth::user())) {
+            # code...
+            return redirect()->route('voyager.dashboard');
+        }
         return view('site.register.index', []);
     }
 
     public function doRegister(Request $request)
     {
-        $validator = $request->validate([
+        $request->validate([
             'name' => 'required',
             'email' => 'required|unique:users',
             'password' => 'required',
             'confirm_password' => 'required',
+            'site_id' => 'required|unique:sites'
         ]);
-
-        if ($validator->fails()) {
-            return redirect('site.front.register')
-                ->withErrors($validator)
-                ->withInput();
-        }
         
-        $this->createUser($request);
+        $user = $this->createUser($request);
 
+        $domainManager = new DomainController();
+
+        $domainManager->registerDnsZone($request);
+
+        $site = new Site();
+        $site->site_id = $request->site_id;
+        $site->owner_id = $user->id;
+        $site->save();
+
+        Auth::login($user, true);
+
+        return $this->redirectTo();
+    }
+
+    /*
+     * Preempts $redirectTo member variable (from RedirectsUsers trait)
+     */
+    public function redirectTo()
+    {
+        return redirect()->route('voyager.dashboard');
     }
 
     /**
@@ -43,15 +67,15 @@ class HomeController extends Controller
      *
      * @return mixed
      */
-    protected function getAdministratorRole()
+    protected function getUserRole()
     {
         $role = Voyager::model('Role')->firstOrNew([
-            'name' => 'admin',
+            'name' => 'user',
         ]);
 
         if (!$role->exists) {
             $role->fill([
-                'display_name' => 'Administrator',
+                'display_name' => 'Normal User',
             ])->save();
         }
 
@@ -67,19 +91,40 @@ class HomeController extends Controller
      */
     protected function createUser(Request $request)
     {
-        $email = $request->email;
-
         $model = Auth::guard(app('VoyagerGuard'))->getProvider()->getModel();
         $model = Str::start($model, '\\');
 
         $name = $request->name;
         $password = $request->password;
         $confirmPassword = $request->confirm_password;
+        $email = $request->email;
 
-        return call_user_func($model . '::forceCreate', [
+        $user = call_user_func($model . '::forceCreate', [
             'name' => $name,
             'email' => $email,
             'password' => \Hash::make($password),
-        ]); 
+        ]);
+
+        // the user not returned
+        if (!$user) {
+            exit;
+        }
+
+        // Get or create role
+        $role = $this->getUserRole();
+
+        // Get all permissions
+        $permissions = Voyager::model('Permission')->all();
+
+        // Assign all permissions to the admin role
+        $role->permissions()->sync(
+            $permissions->pluck('id')->all()
+        );
+
+        // Ensure that the user is admin
+        $user->role_id = $role->id;
+        $user->save();
+
+        return $user;
     }
 }

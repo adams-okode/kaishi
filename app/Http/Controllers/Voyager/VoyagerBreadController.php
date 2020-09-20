@@ -17,7 +17,7 @@ use TCG\Voyager\Facades\Voyager;
 
 class VoyagerBreadController extends Controller
 {
-    public function index($account)
+    public function index()
     {
         $this->authorize('browse_bread');
 
@@ -117,7 +117,7 @@ class VoyagerBreadController extends Controller
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function edit( $table)
+    public function edit($table)
     {
         $this->authorize('browse_bread');
 
