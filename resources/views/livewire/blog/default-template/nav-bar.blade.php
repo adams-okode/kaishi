@@ -7,12 +7,8 @@
         </ul>
     </nav><!-- .nav-menu -->
 
-    @if(auth()->user())
+
     <a href="{{ route('voyager.register') }}" class="get-started-btn scrollto">Start For Free</a>
     <a href="{{ route('voyager.login') }}" class="login-btn btn-primary scrollto">Sign In</a>
-    @else
-    <a href="{{ route('voyager.dashboard') }}" class="login-btn btn-primary scrollto">{{ auth()->user()->name }}</a>
-    @endif
     </div>
 </header><!-- End Header -->
-
