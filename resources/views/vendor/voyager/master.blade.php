@@ -28,6 +28,9 @@
         <link rel="stylesheet" href="{{ voyager_asset('css/rtl.css') }}">
     @endif
 
+   
+    
+
     <!-- Few Dynamic Styles -->
     <style type="text/css">
         .voyager .side-menu .navbar-header {

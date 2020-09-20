@@ -196,7 +196,7 @@ class VoyagerBaseController extends Controller
     //
     //****************************************
 
-    public function show(Request $request, $account, $id)
+    public function show(Request $request,  $id)
     {
         $slug = $this->getSlug($request);
 
@@ -259,7 +259,7 @@ class VoyagerBaseController extends Controller
     //
     //****************************************
 
-    public function edit(Request $request, $account, $id)
+    public function edit(Request $request,  $id)
     {
         $slug = $this->getSlug($request);
 
@@ -307,7 +307,7 @@ class VoyagerBaseController extends Controller
     }
 
     // POST BR(E)AD
-    public function update(Request $request, $account, $id)
+    public function update(Request $request,  $id)
     {
         $slug = $this->getSlug($request);
 
@@ -413,7 +413,7 @@ class VoyagerBaseController extends Controller
         // Check permission
         $this->authorize('add', app($dataType->model_name));
 
-
+        dd($dataType->rows);
         // Validate fields with ajax
         $val = $this->validateBread($request->all(), $dataType->addRows)->validate();
         $data = $this->insertUpdateData($request, $slug, $dataType->addRows, new $dataType->model_name());

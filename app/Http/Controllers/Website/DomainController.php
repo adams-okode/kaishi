@@ -24,17 +24,19 @@ class DomainController extends Controller
         $this->apiInstance = new \GoDaddyDomainsClient\Api\VdomainsApi($this->apiClient);
     }
 
+    
     public function checkDnsZoneAvailability(Request $request)
     {
-        $availability = $this->apiInstance->recordGet($this->domain, DNSRecord::TYPE_CNAME, $request->zoneName, false);
-        return response()->json($availability);
+        $availability = $this->apiInstance->recordGet($this->domain, DNSRecord::TYPE_CNAME, $request->name, false);
+        $records = $this->apiClient->getSerializer()->sanitizeForSerialization($availability);
+        return response()->json($records);
     }
 
     public function registerDnsZone(Request $request)
     {
         $record = new DNSRecord();
         $record->setType(DNSRecord::TYPE_CNAME);
-        $record->setName($request->zoneName);
+        $record->setName($request->name);
         $record->setData('@');
         $record->setPriority(null);
         $record->setTtl(3600);
@@ -44,7 +46,7 @@ class DomainController extends Controller
         $records = [$record];
         try {
             $response = $this->apiInstance->recordAddWithHttpInfo($domain, $records);
-            return response()->json($response);
+            return response()->json($this->apiClient->getSerializer()->sanitizeForSerialization($response));
         } catch (ApiException $th) {
             return response()->json([
                 'statusCode' => $th->getCode(),

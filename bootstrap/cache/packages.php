@@ -47,6 +47,14 @@
       'Image' => 'Intervention\\Image\\Facades\\Image',
     ),
   ),
+  'kaishi/voyager' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'TCG\\Voyager\\VoyagerServiceProvider',
+      1 => 'TCG\\Voyager\\Providers\\VoyagerDummyServiceProvider',
+    ),
+  ),
   'larapack/doctrine-support' => 
   array (
     'providers' => 
@@ -98,14 +106,6 @@
     'providers' => 
     array (
       0 => 'NunoMaduro\\Collision\\Adapters\\Laravel\\CollisionServiceProvider',
-    ),
-  ),
-  'tcg/voyager' => 
-  array (
-    'providers' => 
-    array (
-      0 => 'TCG\\Voyager\\VoyagerServiceProvider',
-      1 => 'TCG\\Voyager\\Providers\\VoyagerDummyServiceProvider',
     ),
   ),
 );

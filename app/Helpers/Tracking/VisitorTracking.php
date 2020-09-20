@@ -188,3 +188,5 @@ class VisitorTracking
         $this->browser = (object) $this->getBrowser();
     }
 }
+
+

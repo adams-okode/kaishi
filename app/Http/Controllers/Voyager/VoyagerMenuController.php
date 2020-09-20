@@ -10,7 +10,7 @@ use App\Http\Controllers\Controller;
 
 class VoyagerMenuController extends Controller
 {
-    public function builder($id)
+    public function builder($id, $account)
     {
         $menu = Voyager::model('Menu')->findOrFail($id);
 
@@ -39,7 +39,7 @@ class VoyagerMenuController extends Controller
             ]);
     }
 
-    public function add_item(Request $request)
+    public function add_item(Request $request, $account=null)
     {
         $menu = Voyager::model('Menu');
 

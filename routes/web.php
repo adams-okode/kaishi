@@ -44,12 +44,22 @@ Route::domain('{account}.' . env('APP_DOMAIN'))->middleware([
                     Route::get($dataType->slug . '/{id}/restore', $breadController . '@restore')->name($dataType->slug . '.restore');
                     Route::get($dataType->slug . '/relation', $breadController . '@relation')->name($dataType->slug . '.relation');
                     Route::post($dataType->slug . '/remove', $breadController . '@remove_media')->name($dataType->slug . '.media.remove');
-                    Route::resource($dataType->slug, $breadController, ['parameters' => [$dataType->slug => 'id']]);
+
+                    Route::get($dataType->slug, $breadController . '@index')->name($dataType->slug . '.index');
+                    Route::get($dataType->slug . '/create', $breadController . '@create')->name($dataType->slug . '.create');
+                    Route::post($dataType->slug, $breadController . '@store')->name($dataType->slug . '.store');
+                    Route::get($dataType->slug . '/{id}', $breadController . '@show')->name($dataType->slug . '.show');
+                    Route::get($dataType->slug . '/{id}/edit', $breadController . '@edit')->name($dataType->slug . '.edit');
+                    Route::patch($dataType->slug . '/{id}', $breadController . '@update')->name($dataType->slug . '.update');
+                    Route::delete($dataType->slug . '/{id}', $breadController . '@destroy')->name($dataType->slug . '.destroy');
+
+                    // Route::resource($dataType->slug, $breadController, ['parameters' => [$dataType->slug => 'id']]);
                 }
             } catch (\InvalidArgumentException $e) {
                 throw new \InvalidArgumentException("Custom routes hasn't been configured because: " . $e->getMessage(), 1);
             } catch (\Exception $e) {
                 // do nothing, might just be because table is not yet migrated.
+
             }
 
             // Menu Routes
@@ -57,6 +67,7 @@ Route::domain('{account}.' . env('APP_DOMAIN'))->middleware([
                 'as' => 'menus.',
                 'prefix' => 'menus/{menu}',
             ], function () use ($namespacePrefix) {
+
                 Route::get('builder', ['uses' => $namespacePrefix . 'VoyagerMenuController@builder', 'as' => 'builder']);
                 Route::post('order', ['uses' => $namespacePrefix . 'VoyagerMenuController@order_item', 'as' => 'order_item']);
 
@@ -75,6 +86,7 @@ Route::domain('{account}.' . env('APP_DOMAIN'))->middleware([
                 'as' => 'settings.',
                 'prefix' => 'settings',
             ], function () use ($namespacePrefix) {
+
                 Route::get('/', ['uses' => $namespacePrefix . 'VoyagerSettingsController@index', 'as' => 'index']);
                 Route::post('/', ['uses' => $namespacePrefix . 'VoyagerSettingsController@store', 'as' => 'store']);
                 Route::put('/', ['uses' => $namespacePrefix . 'VoyagerSettingsController@update', 'as' => 'update']);

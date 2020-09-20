@@ -8,6 +8,7 @@
     </nav><!-- .nav-menu -->
 
     <a href="{{ url('register') }}" class="get-started-btn scrollto">Start For Free</a>
+    <a href="{{ url('register') }}" class="get-started-btn btn-primary scrollto">Start For Free</a>
     </div>
 </header><!-- End Header -->
 
