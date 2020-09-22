@@ -23,24 +23,29 @@ class VoyagerMediaController extends Controller
 
     public function __construct(Request $request)
     {
-        $this->directory = $request->account;
-        $this->filesystem = config('voyager.storage.disk');
 
-        if (!Storage::disk($this->filesystem)->exists($this->directory)) {
-            Storage::disk($this->filesystem)->makeDirectory($this->directory, 0775, true); //creates directory
-        }
+        $this->middleware(function ($request, $next) {      
+            $account = auth()->user()->id;
+            $this->directory = $account;
+            $this->filesystem = config('voyager.storage.disk');
+
+            if (!Storage::disk($this->filesystem)->exists($this->directory)) {
+                Storage::disk($this->filesystem)->makeDirectory($this->directory, 0775, true); //creates directory
+            }
+            return $next($request);
+        });
+        
     }
 
     public function index()
     {
-        // Check permission
         $this->authorize('browse_media');
         return Voyager::view('voyager::media.index');
     }
 
-    public function files(Request $request, $account)
+    public function files(Request $request)
     {
-        // Check permission
+        $account = Auth::user()->id;
         $this->authorize('browse_media');
 
         $options = $request->details ?? [];
