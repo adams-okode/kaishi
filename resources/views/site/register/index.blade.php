@@ -5,7 +5,7 @@
 
     <h3>Free Sign Up</h3>
 
-    <form action="{{ route('site.do.front.register') }}" method="POST">
+    <form action="{{ route('voyager.do.front.register') }}" method="POST">
         {{ csrf_field() }}
         <div class="form-group form-group-default" id="nameGroup">
             <label>Name</label>
