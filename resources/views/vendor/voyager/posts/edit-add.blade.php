@@ -44,10 +44,6 @@
                         <!-- CSRF TOKEN -->
                         {{ csrf_field() }}
 
-                       
-
-                       
-
                         <div class="panel-body">
                             <button class="btn btn-outline-dark float-right" id="settings-menu-toggle">
                                 <i aria-hidden="true" class="voyager-settings"></i>
@@ -83,12 +79,15 @@
                                 right: 0;
                                 top: 60px;
                                 width: 35rem;
-                                overflow-y: scroll;
                                 -webkit-transition: margin 0.25s ease-out;
                                 -moz-transition: margin 0.25s ease-out;
                                 -o-transition: margin 0.25s ease-out;
-                                transition: margin 0.25s ease-out;">
-                                <div class="card">
+                                transition: margin 0.25s ease-out;
+                                box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+                                ">
+                                <div class="card" style="
+                                overflow-y: scroll;
+                                height: calc(100vh - 60px);">
                                     <div class="card-body">
                                         <button type="button" class="btn btn-outline-dark float-right" id="settings-menu-toggle-inside">
                                             <i aria-hidden="true" class="voyager-x"></i>
@@ -132,7 +131,9 @@
                                             @if(in_array($row->field, ['post_belongsto_site_relationship']))
                                                 <div class="form-group @if($row->type == 'hidden') hidden @endif col-md-{{ $display_options->width ?? 12 }} {{ $errors->has($row->field) ? 'has-error' : '' }}" @if(isset($display_options->id)){{ "id=$display_options->id" }}@endif>
                                                     {{ $row->slugify }}
-                                                    <label class="control-label" for="name">{{ $row->getTranslatedAttribute('display_name') }}</label>
+                                                    <label class="control-label" for="name">
+                                                        {{ $row->getTranslatedAttribute('display_name') }}
+                                                    </label>
                                                     @include('vendor.voyager.posts.relationship', ['options' => $row->details])
                                                    
                                                     @foreach (app('voyager')->afterFormFields($row, $dataType, $dataTypeContent) as $after)
