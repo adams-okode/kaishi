@@ -19,7 +19,9 @@ Route::domain('app.' . env('APP_DOMAIN'))->middleware([
 
         event(new Routing());
 
-        Route::get('/register', [App\Http\Controllers\Website\HomeController::class, 'register'])->name('register');
+
+        Route::get('register', [App\Http\Controllers\Website\HomeController::class, 'register'])->name('register');
+        Route::post('do/register', [App\Http\Controllers\Website\HomeController::class, 'doRegister'])->name('do.front.register');
         Route::get('login', ['uses' => $namespacePrefix . 'VoyagerAuthController@login', 'as' => 'login']);
         Route::post('login', ['uses' => $namespacePrefix . 'VoyagerAuthController@postLogin', 'as' => 'postlogin']);
 

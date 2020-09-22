@@ -32,6 +32,10 @@
                 <span class="signin">{{ __('voyager::generic.login') }}</span>
             </button>
 
+            <a href="{{ route('voyager.register') }}" class="btn btn-success pull-right">
+                <span class="signin">Sign Up</span>
+            </a>
+
         </form>
 
         <div style="clear:both"></div>
