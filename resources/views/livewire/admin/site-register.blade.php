@@ -125,7 +125,7 @@
                 var name = ev.value;
                 document.getElementById("searchBox").style = 'border: 2px solid rgb(122 134 146)'
                 document.getElementById("searchSpinner").style = 'display:block'
-                fetch(`{{ route('site.rest.domain.fetch') }}?name=${name.toLowerCase()}`)
+                fetch(`{{ route('api.rest.domain.fetch') }}?name=${name.toLowerCase()}`)
                     .then((resp) => resp.json())
                     .then(function (data) {
                         document.getElementById("searchSpinner").style = 'display:none'

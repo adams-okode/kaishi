@@ -12,8 +12,13 @@ use Illuminate\Support\Facades\Route;
 | routes are loaded by the RouteServiceProvider within a group which
 | is assigned the "api" middleware group. Enjoy building your API!
 |
-*/
+ */
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
+});
+
+Route::prefix('/site-rest/dns')->group(function () {
+    Route::get('/get', [App\Http\Controllers\Website\DomainController::class, 'checkDnsZoneAvailability'])->name('api.rest.domain.fetch');
+    // Route::get('/register', [App\Http\Controllers\Website\DomainController::class, 'registerDnsZone'])->name('api.rest.domain.register');
 });
