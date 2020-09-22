@@ -1,8 +1,8 @@
 @if($data)
     @php
-        // need to recreate object because policy might depend on record data
         $class = get_class($action);
         $action = new $class($dataType, $data);
+        var_dump($data);
     @endphp
     @can ($action->getPolicy(), $data)
         <a href="{{ $action->getRoute($dataType->name) }}" title="{{ $action->getTitle() }}" {!! $action->convertAttributesToHtml() !!}>

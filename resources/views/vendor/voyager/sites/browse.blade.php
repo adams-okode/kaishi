@@ -251,12 +251,14 @@
                                             </td>
                                         @endforeach
                                         <td class="no-sort no-click bread-actions">
-
                                             @foreach($actions as $action)
                                                 @if (!method_exists($action, 'massAction'))
                                                     @include('voyager::bread.partials.actions', ['action' => $action])
                                                 @endif
                                             @endforeach
+                                            <a href="http://{{ $data->site_id .'.'. env('APP_DOMAIN') }}" class="btn btn-success">
+                                                <span>Preview</span>
+                                            </a>
                                         </td>
                                     </tr>
                                     @endforeach
