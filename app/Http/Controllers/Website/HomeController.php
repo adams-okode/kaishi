@@ -47,6 +47,7 @@ class HomeController extends Controller
         $site->site_id = $request->site_id;
         $site->owner_id = $user->id;
         $site->save();
+        dd($user);
 
         Auth::login($user, true);
 
