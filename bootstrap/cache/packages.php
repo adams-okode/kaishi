@@ -115,4 +115,11 @@
       0 => 'NunoMaduro\\Collision\\Adapters\\Laravel\\CollisionServiceProvider',
     ),
   ),
+  'snowfire/beautymail' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Snowfire\\Beautymail\\BeautymailServiceProvider',
+    ),
+  ),
 );

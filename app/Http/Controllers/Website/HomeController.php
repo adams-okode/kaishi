@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers\Website;
 
+use App\Helpers\Mails\Mailer;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use TCG\Voyager\Facades\Voyager;
 use App\Models\Site;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
-
+use TCG\Voyager\Facades\Voyager;
 
 class HomeController extends Controller
 {
@@ -22,7 +22,6 @@ class HomeController extends Controller
     public function register(Request $request)
     {
         if (!is_null(Auth::user())) {
-            # code...
             return redirect()->route('voyager.dashboard');
         }
         return view('site.register.index', []);
@@ -35,9 +34,9 @@ class HomeController extends Controller
             'email' => 'required|unique:users',
             'password' => 'required',
             'confirm_password' => 'required',
-            'site_id' => 'required|unique:sites'
+            'site_id' => 'required|unique:sites',
         ]);
-        
+
         $user = $this->createUser($request);
 
         $domainManager = new DomainController();
@@ -51,6 +50,10 @@ class HomeController extends Controller
 
         Auth::login($user, true);
 
+        
+        $mailer = new Mailer($user);
+        $mailer->sendRegistrationEmail([]);
+        
         return $this->redirectTo();
     }
 
