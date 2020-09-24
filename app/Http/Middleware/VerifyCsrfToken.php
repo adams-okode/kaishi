@@ -12,6 +12,7 @@ class VerifyCsrfToken extends Middleware
      * @var array
      */
     protected $except = [
-        'auth/*',
+        'kaishi-app/auth/*',
+        'kaishi-app/logout',
     ];
 }
