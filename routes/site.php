@@ -17,5 +17,5 @@ $routes = function () {
 
 };
 
-Route::group(['domain' => 'www' . env('APP_DOMAIN')], $routes);
+Route::group(['domain' => 'www.' . env('APP_DOMAIN')], $routes);
 Route::group(['domain' => env('APP_DOMAIN')], $routes);
