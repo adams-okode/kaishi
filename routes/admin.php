@@ -27,6 +27,7 @@ Route::prefix('kaishi-app')->group(function () use ($namespacePrefix) {
         Route::post('auth/login', ['uses' => $namespacePrefix . 'VoyagerAuthController@postLogin', 'as' => 'postlogin']);
 
         Route::group(['middleware' => 'admin.user'], function () use ($namespacePrefix) {
+            
             event(new RoutingAdmin());
 
             // Main Admin and Logout Route
