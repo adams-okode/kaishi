@@ -6,7 +6,9 @@
     <h3>Free Sign Up</h3>
 
     <form method="POST" action="{{ route('voyager.do.front.register') }}">
-        @csrf
+
+        {{ csrf_field() }}
+
         <div class="form-group form-group-default" id="nameGroup">
             <label>Name</label>
             <div class="controls">
@@ -44,11 +46,6 @@
         </div>
 
         <livewire:admin.site-register>
-
-        <button type="submit" class="btn btn-block login-button pull-right">
-            <span class="signingin hidden"><span class="voyager-refresh"></span> Sending...</span>
-            <span class="signin">Finish</span>
-        </button>
 
         <a href="{{ route('voyager.login') }}" class="btn btn-success pull-right">
             <span class="signin">Sign In</span>
