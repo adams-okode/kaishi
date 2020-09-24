@@ -10,11 +10,11 @@ use TCG\Voyager\Facades\Voyager;
 
 $namespacePrefix = '\\' . config('voyager.controllers.namespace') . '\\';
 
+// domain('app.' . env('APP_DOMAIN'))->middleware([
+//     'subdomain.route.excempt'
+//  ])->
 
-
-Route::domain('app.' . env('APP_DOMAIN'))->middleware([
-    'subdomain.route.excempt'
- ])->group(function () use ($namespacePrefix) {
+Route::prefix('kaishi-app')->group(function () use ($namespacePrefix) {
 
     Route::name('voyager.')->group(function () use ($namespacePrefix) {
 
