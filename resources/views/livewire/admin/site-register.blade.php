@@ -75,7 +75,7 @@
                         </p>
                         <div id="searchBox" class="form-group form-group-default">
                             <div class="controls">
-                                <input type="text" name="site_id" id="email" placeholder="Search ..."
+                                <input type="text" name="site_id" placeholder="Search ..."
                                     class="form-control" oninput="searchDnsRecordExisntense(this)">
                             </div>
 
@@ -86,12 +86,7 @@
 
                     </div>
                 </div>
-                <button type="submit" class="btn btn-block login-button pull-right">
-                    <span class="signingin hidden"><span class="voyager-refresh"></span> Sending...</span>
-                    <span class="signin">Finish</span>
-                </button>
             </div>
-
         </div>
 
         <script>
