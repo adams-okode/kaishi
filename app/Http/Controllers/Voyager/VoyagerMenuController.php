@@ -10,7 +10,7 @@ use App\Http\Controllers\Controller;
 
 class VoyagerMenuController extends Controller
 {
-    public function builder($id, $account)
+    public function builder($id)
     {
         $menu = Voyager::model('Menu')->findOrFail($id);
 
