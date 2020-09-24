@@ -78,7 +78,9 @@
                     "awslogs-stream-prefix": "ecs"
                 }
             },
-            "entryPoint": null,
+            "entryPoint": [
+                "./var/www/entrypoint.sh"
+            ],
             "portMappings": [
                 {
                     "hostPort": 80,
