@@ -34,7 +34,7 @@ class VoyagerAuthController extends Controller
         if ($this->guard()->attempt($credentials, $request->has('remember'))) {
             return $this->sendLoginResponse($request);
         }
-
+        
         $this->incrementLoginAttempts($request);
 
         return $this->sendFailedLoginResponse($request);
@@ -45,7 +45,7 @@ class VoyagerAuthController extends Controller
      */
     public function redirectTo()
     {
-        return '/kaishi-app';
+        return route('voyager.dashboard');
     }
 
     /**
