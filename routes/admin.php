@@ -21,10 +21,10 @@ Route::prefix('kaishi-app')->group(function () use ($namespacePrefix) {
         event(new Routing());
 
 
-        Route::get('register', [App\Http\Controllers\Website\HomeController::class, 'register'])->name('register');
-        Route::post('do/register', [App\Http\Controllers\Website\HomeController::class, 'doRegister'])->name('do.front.register');
-        Route::get('login', ['uses' => $namespacePrefix . 'VoyagerAuthController@login', 'as' => 'login']);
-        Route::post('login', ['uses' => $namespacePrefix . 'VoyagerAuthController@postLogin', 'as' => 'postlogin']);
+        Route::get('auth/register', [App\Http\Controllers\Website\HomeController::class, 'register'])->name('register');
+        Route::post('auth/do/register', [App\Http\Controllers\Website\HomeController::class, 'doRegister'])->name('do.front.register');
+        Route::get('auth/login', ['uses' => $namespacePrefix . 'VoyagerAuthController@login', 'as' => 'login']);
+        Route::post('auth/login', ['uses' => $namespacePrefix . 'VoyagerAuthController@postLogin', 'as' => 'postlogin']);
 
         Route::group(['middleware' => 'admin.user'], function () use ($namespacePrefix) {
             event(new RoutingAdmin());
