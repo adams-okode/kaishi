@@ -10,16 +10,13 @@ use TCG\Voyager\Facades\Voyager;
 
 $namespacePrefix = '\\' . config('voyager.controllers.namespace') . '\\';
 
-// domain('app.' . env('APP_DOMAIN'))->middleware([
-//     'subdomain.route.excempt'
-//  ])->
-
-Route::prefix('kaishi-app')->group(function () use ($namespacePrefix) {
+Route::domain('app.' . env('APP_DOMAIN'))->middleware([
+    'subdomain.route.excempt',
+])->prefix('kaishi-app')->group(function () use ($namespacePrefix) {
 
     Route::name('voyager.')->group(function () use ($namespacePrefix) {
 
         event(new Routing());
-
 
         Route::get('auth/register', [App\Http\Controllers\Website\HomeController::class, 'register'])->name('register');
         Route::post('auth/do/register', [App\Http\Controllers\Website\HomeController::class, 'doRegister'])->name('do.front.register');
@@ -27,7 +24,7 @@ Route::prefix('kaishi-app')->group(function () use ($namespacePrefix) {
         Route::post('auth/login', ['uses' => $namespacePrefix . 'VoyagerAuthController@postLogin', 'as' => 'postlogin']);
 
         Route::group(['middleware' => 'admin.user'], function () use ($namespacePrefix) {
-            
+
             event(new RoutingAdmin());
 
             // Main Admin and Logout Route
@@ -146,7 +143,7 @@ Route::prefix('kaishi-app')->group(function () use ($namespacePrefix) {
         //Asset Routes
 
         Route::get('voyager-assets', ['uses' => $namespacePrefix . 'VoyagerController@assets', 'as' => 'voyager_assets']);
-        
+
         event(new RoutingAfter());
     });
 
