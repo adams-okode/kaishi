@@ -84,6 +84,11 @@
                             <span class="sr-only">Loading...</span>
                         </div>
 
+                        <button type="submit" class="btn btn-block login-button pull-right">
+                            <span class="signingin hidden"><span class="voyager-refresh"></span> Sending...</span>
+                            <span class="signin">Finish</span>
+                        </button>
+
                     </div>
                 </div>
             </div>
