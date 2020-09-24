@@ -36,7 +36,7 @@ RUN chown -R www-data:www-data /var/www
 RUN chmod -R 755 /var/www
 
 # Copy existing application directory contents
-COPY ./ /var/www/
+COPY . /var/www/
 
 RUN composer install
 
@@ -44,9 +44,11 @@ RUN cp .env.example .env
 
 RUN chown -R www-data:www-data /var/www/storage
 
-RUN chmod +x /var/www/entrypoint.sh
+ADD entrypoint.sh /
+
+RUN ["chmod", "+x", "/entrypoint.sh"]
 
 # Expose port 9000 and start php-fpm server
 EXPOSE 9000
 
-ENTRYPOINT [ "./var/www/entrypoint.sh" ]
+CMD [ "entrypoint.sh" ]
