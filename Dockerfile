@@ -42,11 +42,7 @@ RUN composer install
 
 RUN cp .env.example .env
 
-RUN php artisan key:generate\ 
-    && php artisan storage:link\ 
-    && php artisan view:clear\
-    && php artisan route:clear\
-    && php artisan cache:clear
+RUN php artisan key:generate
 
 RUN chown -R www-data:www-data /var/www/storage
 
