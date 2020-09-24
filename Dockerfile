@@ -42,10 +42,9 @@ RUN composer install
 
 RUN cp .env.example .env
 
-RUN php artisan key:generate \
-    && php artisan cache:clear
-
 RUN chown -R www-data:www-data /var/www/storage
+
+RUN chmod +x /var/www/entrypoint.sh
 
 # Expose port 9000 and start php-fpm server
 EXPOSE 9000
