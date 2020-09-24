@@ -38,9 +38,9 @@ RUN chmod -R 755 /var/www
 # Copy existing application directory contents
 COPY . /var/www/
 
-RUN composer install
-
 RUN cp .env.example .env
+
+RUN composer install
 
 RUN chown -R www-data:www-data /var/www/storage
 
