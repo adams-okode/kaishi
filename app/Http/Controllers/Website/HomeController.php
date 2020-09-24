@@ -29,6 +29,10 @@ class HomeController extends Controller
 
     public function doRegister(Request $request)
     {
+        if (Auth::user()) {
+            return redirect()->route('voyager.dashboard');
+        }
+
         $request->validate([
             'name' => 'required',
             'email' => 'required|unique:users',
@@ -47,12 +51,10 @@ class HomeController extends Controller
         $site->site_id = $request->site_id;
         $site->owner_id = $user->id;
         $site->save();
-           
-        Auth::login($user, true);
 
+        Auth::login($user, true);
         $mailer = new Mailer($user);
         $mailer->sendRegistrationEmail([]);
-        
         return $this->redirectTo();
     }
 
