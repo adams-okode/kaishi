@@ -59,7 +59,10 @@
             "App\\": "app/",
             "Database\\Factories\\": "database/factories/",
             "Database\\Seeders\\": "database/seeders/"
-        }
+        },
+        "files": [
+            "helpers/main.php"
+        ]
     },
     "autoload-dev": {
         "psr-4": {
@@ -80,5 +83,4 @@
             "@php artisan key:generate --ansi"
         ]
     }
-    
 }
