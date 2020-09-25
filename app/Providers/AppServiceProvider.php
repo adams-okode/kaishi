@@ -2,8 +2,9 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\ServiceProvider;
 use App\FormFields\SiteRegisterFormField;
+use Illuminate\Routing\UrlGenerator;
+use Illuminate\Support\ServiceProvider;
 use TCG\Voyager\Facades\Voyager;
 
 class AppServiceProvider extends ServiceProvider
@@ -16,6 +17,10 @@ class AppServiceProvider extends ServiceProvider
     public function register()
     {
         Voyager::addFormField(SiteRegisterFormField::class);
+
+        if (env('APP_ENV') == 'prod' || env('APP_ENV') == 'production') {
+            $this->app['request']->server->set('HTTPS', true);
+        }
     }
 
     /**
@@ -23,10 +28,10 @@ class AppServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot()
+    public function boot(UrlGenerator $url)
     {
-        // if (env('APP_ENV') == 'prod' || env('APP_ENV') == 'production') {
-        //     \URL::forceScheme('https');
-        // }
+        if (env('APP_ENV') == 'prod' || env('APP_ENV') == 'production') {
+            $url->formatScheme('https');
+        }
     }
 }
