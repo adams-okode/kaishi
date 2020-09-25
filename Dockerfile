@@ -51,4 +51,4 @@ RUN ["chmod", "+x", "/entrypoint.sh"]
 # Expose port 9000 and start php-fpm server
 EXPOSE 9000
 
-CMD [ "sh", "-c", "php artisan key:generate && php artisan view:clear && php artisan cache:clear && php artisan config:cache && php-fpm" ]
+CMD [ "sh", "-c", "php artisan key:generate && php artisan view:clear && php-fpm" ]

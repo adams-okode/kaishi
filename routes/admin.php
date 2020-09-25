@@ -12,7 +12,7 @@ $namespacePrefix = '\\' . config('voyager.controllers.namespace') . '\\';
 
 Route::domain('app.' . env('APP_DOMAIN'))->middleware([
     'subdomain.route.excempt',
-])->prefix('kaishi-app')->group(function () use ($namespacePrefix) {
+])->group(function () use ($namespacePrefix) {
 
     Route::name('voyager.')->group(function () use ($namespacePrefix) {
 
