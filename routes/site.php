@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Route;
  */
 
 $routes = function () {
-    Route::get('/', [App\Http\Controllers\Website\HomeController::class, 'index'])->name('site.front.home');
+    Route::get('/', [App\Http\Controllers\Website\HomeController::class, 'index']);
 
 };
 
