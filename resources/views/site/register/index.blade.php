@@ -1,14 +1,10 @@
 @extends('voyager::auth.master')
 
 @section('content')
-<div class="login-container">
-
+<div class="signup-container">
     <h3>Free Sign Up</h3>
-
     <form method="POST" action="{{ route('voyager.do.front.register') }}">
-
         {{ csrf_field() }}
-
         <div class="form-group form-group-default" id="nameGroup">
             <label>Name</label>
             <div class="controls">
@@ -16,7 +12,6 @@
                     class="form-control" required>
             </div>
         </div>
-
         <div class="form-group form-group-default" id="emailGroup">
             <label>Email</label>
             <div class="controls">
@@ -24,7 +19,6 @@
                     placeholder="{{ __('voyager::generic.email') }}" class="form-control" required>
             </div>
         </div>
-
         <div class="form-group form-group-default" id="passwordGroup">
             <label>Password</label>
             <div class="controls">
@@ -34,7 +28,6 @@
                 <div id="passwordStrength"></div>
             </div>
         </div>
-
         <div class="form-group form-group-default" id="passwordCheckGroup">
             <label>Confirm Password</label>
             <div class="controls">
@@ -46,7 +39,7 @@
         </div>
 
         <livewire:admin.site-register>
-
+            
         <a href="{{ route('voyager.login') }}" class="btn btn-success pull-right">
             <span class="signin">Sign In</span>
         </a>
