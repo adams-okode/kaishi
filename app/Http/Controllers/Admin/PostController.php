@@ -96,8 +96,10 @@ class PostController extends VoyagerBaseController
             $dataTypeContent = call_user_func([DB::table($dataType->name), $getter]);
             $model = false;
         }
+       
 
-        $dataTypeContent = $dataTypeContent->whereIn('site_id', Auth::user()->sites->pluck('id')->toArray());
+        $dataTypeContent = $dataTypeContent->whereIn('account_id', Auth::user()->sites->pluck('site_id')->toArray());
+        // dd($dataTypeContent);
 
         // Check if BREAD is Translatable
         $isModelTranslatable = is_bread_translatable($model);

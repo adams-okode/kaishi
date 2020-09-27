@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use TCG\Voyager\Facades\Voyager;
 use TCG\Voyager\Events\BreadDataAdded;
 use Illuminate\Support\Facades\Auth;
-
+use App\Http\Controllers\Website\DomainController;
 
 class SiteController extends VoyagerBaseController
 {
@@ -185,6 +185,10 @@ class SiteController extends VoyagerBaseController
         $dataType = Voyager::model('DataType')->where('slug', '=', $slug)->first();
 
         $data = $this->insertUpdateData($request, 'sites', $dataType->rows, new Site());
+
+        $domainManager = new DomainController();
+        
+        $domainManager->registerDnsZone($request);
 
         event(new BreadDataAdded($dataType, $data));
 

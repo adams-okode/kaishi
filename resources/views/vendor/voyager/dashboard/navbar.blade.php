@@ -1,4 +1,8 @@
 <nav class="navbar navbar-default navbar-fixed-top navbar-top">
+    <a class="navbar-brand" href="#">
+        <img src="{{ asset('kaishi-logo/vector/default-monochrome.svg') }}" width="80">
+    </a>
+
     <div class="container-fluid">
         <div class="navbar-header">
             <button class="hamburger btn-link">
@@ -35,14 +39,15 @@
         <ul class="nav navbar-nav @if (__('voyager::generic.is_rtl') == 'true') navbar-left @else navbar-right @endif">
             <li class="dropdown profile">
                 <a href="#" class="dropdown-toggle text-right" data-toggle="dropdown" role="button"
-                   aria-expanded="false"><img src="{{ $user_avatar }}" class="profile-img"> <span
-                            class="caret"></span></a>
+                   aria-expanded="false">
+                    <livewire:admin.default-avatar>
+                    <span class="caret"></span>
+                </a>
                 <ul class="dropdown-menu dropdown-menu-animated">
                     <li class="profile-img">
-                        <img src="{{ $user_avatar }}" class="profile-img">
+                        <livewire:admin.default-avatar>
                         <div class="profile-body">
                             <h5>{{ Auth::user()->name }}</h5>
-                            <h6>{{ Auth::user()->email }}</h6>
                         </div>
                     </li>
                     <li class="divider"></li>

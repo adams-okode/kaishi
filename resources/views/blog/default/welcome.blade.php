@@ -1,6 +1,6 @@
 @extends('blog.default.layout.master')
 @section('title', ucwords(request()->account))
-<livewire:blog.default-template.nav-bar>
+  <livewire:blog.default-template.nav-bar>
   @section('content')
   <main id="main">
     <section class="breadcrumbs">

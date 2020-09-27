@@ -17,7 +17,7 @@
         <link rel="shortcut icon" href="{{ Voyager::image($admin_favicon) }}" type="image/png">
     @endif
 
-
+    @livewireStyles
 
     <!-- App CSS -->
     <link rel="stylesheet" href="{{ voyager_asset('css/app.css') }}">
@@ -119,7 +119,7 @@ if (\Illuminate\Support\Str::startsWith(Auth::user()->avatar, 'http://') || \Ill
 
 <!-- Javascript Libs -->
 
-
+@livewireScripts
 <script type="text/javascript" src="{{ voyager_asset('js/app.js') }}"></script>
 
 <script>

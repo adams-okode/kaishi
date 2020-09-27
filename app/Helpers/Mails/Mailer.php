@@ -48,11 +48,10 @@ class Mailer
         try {
             $beautymail = app()->make(Snowfire\Beautymail\Beautymail::class);
             $beautymail->send($this->view, $this->data, function ($message) {
-            $message
-                ->from($this->sender)
-                ->to($this->receiver, $this->receiverName)
-                ->subject($this->subject);
-        });
+                $message->from($this->sender)
+                        ->to($this->receiver, $this->receiverName)
+                        ->subject($this->subject);
+            });
         } catch (\Exception $th) {
             \Log::error($th->getMessage());
         }

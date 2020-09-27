@@ -121,6 +121,7 @@
 
   <!-- Template Main JS File -->
   <script src="{{ asset('blog/default/assets/js/main.js') }}"></script>
+  
 
 </body>
 
