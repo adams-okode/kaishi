@@ -7,7 +7,7 @@
 
 @section('css')
     <meta name="csrf-token" content="{{ csrf_token() }}">
-   
+
 @stop
 
 @section('page_title', __('voyager::generic.'.($edit ? 'edit' : 'add')).' '.$dataType->getTranslatedAttribute('display_name_singular'))
@@ -25,7 +25,7 @@
 @section('content')
     <div class="page-content edit-add container-fluid">
 
-        
+
         <div class="row">
             <div class="col-md-12">
 
@@ -45,9 +45,16 @@
                         {{ csrf_field() }}
 
                         <div class="panel-body">
-                            <button class="btn btn-outline-dark float-right" id="settings-menu-toggle">
+
+                            <!-- <button class="btn btn-outline-dark float-right" id="settings-menu-toggle">
                                 <i aria-hidden="true" class="voyager-settings"></i>
+                            </button> -->
+
+                            <button class="btn btn-lg btn-primary save float-right" id="settings-menu-toggle">
+                                Save
                             </button>
+
+                            
 
                             @if (count($errors) > 0)
                             <div class="alert alert-danger">
@@ -61,16 +68,14 @@
 
                             <!-- Adding / Editing -->
                             @php
-                                $dataTypeRows = $dataType->{($edit ? 'editRows' : 'addRows' )};   
+                                $dataTypeRows = $dataType->{($edit ? 'editRows' : 'addRows' )};
                             @endphp
 
                             @foreach($dataTypeRows as $row)
-                                @if(in_array($row->field, ['account_id', 'post_belongsto_user_relationship']))                         
-                                    <input type="hidden" name="user_id" value="{{ Auth::user()->id }}"> 
+                                @if(in_array($row->field, ['account_id', 'post_belongsto_user_relationship']))
+                                    <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
                                 @endif
                             @endforeach
-
-                           
 
                             <!-- Sidebar -->
                             <div id="settings-side-wrapper" class="sidebar-wrapper" style="min-height: 100vh;
@@ -98,7 +103,6 @@
                                                 if ($dataTypeContent->{$row->field.'_'.($edit ? 'edit' : 'add')}) {
                                                     $dataTypeContent->{$row->field} = $dataTypeContent->{$row->field.'_'.($edit ? 'edit' : 'add')};
                                                 }
-                                                
                                             @endphp
                                             @if (isset($row->details->legend) && isset($row->details->legend->text))
                                                 <legend class="text-{{ $row->details->legend->align ?? 'center' }}" style="background-color: {{ $row->details->legend->bgcolor ?? '#f0f0f0' }};padding: 5px;">{{ $row->details->legend->text }}</legend>
@@ -135,7 +139,7 @@
                                                         {{ $row->getTranslatedAttribute('display_name') }}
                                                     </label>
                                                     @include('vendor.voyager.posts.relationship', ['options' => $row->details])
-                                                   
+
                                                     @foreach (app('voyager')->afterFormFields($row, $dataType, $dataTypeContent) as $after)
                                                         {!! $after->handle($row, $dataType, $dataTypeContent) !!}
                                                     @endforeach
@@ -161,7 +165,7 @@
                                     if ($dataTypeContent->{$row->field.'_'.($edit ? 'edit' : 'add')}) {
                                         $dataTypeContent->{$row->field} = $dataTypeContent->{$row->field.'_'.($edit ? 'edit' : 'add')};
                                     }
-                                    
+
                                 @endphp
                                 @if (isset($row->details->legend) && isset($row->details->legend->text))
                                     <legend class="text-{{ $row->details->legend->align ?? 'center' }}" style="background-color: {{ $row->details->legend->bgcolor ?? '#f0f0f0' }};padding: 5px;">{{ $row->details->legend->text }}</legend>
@@ -194,12 +198,12 @@
 
                         </div><!-- panel-body -->
 
-                        <div class="panel-footer">
+                        <!-- <div class="panel-footer">
                             @section('submit-buttons')
                                 <button type="submit" class="btn btn-lg btn-primary save">{{ __('voyager::generic.save') }}</button>
                             @stop
                             @yield('submit-buttons')
-                        </div>
+                        </div> -->
                     </form>
 
                     <iframe id="form_target" name="form_target" style="display:none"></iframe>
@@ -264,26 +268,38 @@
           };
         }
 
+        function makeSlug(slug) {
+            var words = slug.split(' ');
+            return words.join('-').toLowerCase();
+        }
+
         $("#settings-menu-toggle").click(function(e) {
             e.preventDefault();
             $("#settings-side-wrapper").toggle("slow", "swing", function(){
-                
+
             });
         });
 
         $("#settings-menu-toggle-inside").click(function(e) {
             e.preventDefault();
             $("#settings-side-wrapper").toggle("slow", "swing", function(){
-                
+
             });
         });
 
-        
+
 
         $('document').ready(function () {
             $('.toggleswitch').bootstrapToggle();
 
-          
+            var title = document.querySelector('[name="title"]');
+            var slug = document.querySelector('[name="slug"]');
+
+            title.addEventListener("change", (event) => {
+                slug.value = makeSlug(event.target.value)
+            });
+
+
 
             //Init datepicker for date fields if data-datepicker attribute defined
             //or if browser does not handle date inputs
@@ -333,4 +349,3 @@
         });
     </script>
 @stop
-

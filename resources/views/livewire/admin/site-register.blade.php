@@ -56,7 +56,7 @@
 
     <body>
 
-        <button type="button" id="site-register-btn" class="btn btn-block login-button">
+        <button type="button" id="site-register-btn" class="btn btn-block login-btn login-btn-info">
             Proceed
         </button>
 

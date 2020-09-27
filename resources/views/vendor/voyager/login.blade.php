@@ -27,18 +27,17 @@
                 </div>
             </div>
 
-            <button type="submit" class="btn btn-block login-button">
+            <button type="submit" class="btn btn-block login-btn login-btn-info">
                 <span class="signingin hidden"><span class="voyager-refresh"></span> {{ __('voyager::login.loggingin') }}...</span>
                 <span class="signin">{{ __('voyager::generic.login') }}</span>
             </button>
-
-            <a href="{{ route('voyager.register') }}" class="btn btn-success pull-right">
-                <span class="signin">Sign Up</span>
-            </a>
-
         </form>
-
-        <div style="clear:both"></div>
+        <br>
+        <div style="clear:both; text-align:center;">New to Kaishi?</div>
+        <br>
+        <a href="{{ route('voyager.register') }}" class="btn btn-block login-btn login-btn-signup">
+            <span class="signin">Create a Kaishi Account</span>
+        </a>
 
         @if(!$errors->isEmpty())
             <div class="alert alert-red">

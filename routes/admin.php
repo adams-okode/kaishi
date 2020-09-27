@@ -20,6 +20,19 @@ Route::domain('app.' . env('APP_DOMAIN'))->middleware([
 
         Route::get('auth/register', [App\Http\Controllers\Website\HomeController::class, 'register'])->name('register');
         Route::post('auth/do/register', [App\Http\Controllers\Website\HomeController::class, 'doRegister'])->name('do.front.register');
+        Route::get('auth/check-session', function () {
+
+            $app = require dirname(__DIR__, 1) . '/bootstrap/app.php';
+
+            $app->make('Illuminate\Contracts\Http\Kernel')->handle(Illuminate\Http\Request::capture());
+        
+            $id = \Crypt::decryptString($_COOKIE[$app['config']['session.cookie']]);
+            
+            $app['session']->driver()->setId($id);
+            $app['session']->driver()->start();
+
+            return $app['auth']->check();
+        })->name('check.session.auth');
         Route::get('auth/login', ['uses' => $namespacePrefix . 'VoyagerAuthController@login', 'as' => 'login']);
         Route::post('auth/login', ['uses' => $namespacePrefix . 'VoyagerAuthController@postLogin', 'as' => 'postlogin']);
 

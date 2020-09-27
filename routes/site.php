@@ -14,8 +14,16 @@ use Illuminate\Support\Facades\Route;
 
 $routes = function () {
     Route::get('/', [App\Http\Controllers\Website\HomeController::class, 'index']);
-
 };
 
 Route::group(['domain' => 'www.' . env('APP_DOMAIN')], $routes);
 Route::group(['domain' => env('APP_DOMAIN')], $routes);
+
+Route::get('/test-mail',function(){
+    $beautymail = app()->make(Snowfire\Beautymail\Beautymail::class);
+    $beautymail->send('email.welcome', [], function ($message) {
+        $message->from('no-reply@clickwriterpro.com')
+                ->to('aokode@yahoo.com', 'Adams')
+                ->subject('Test');
+    });
+});

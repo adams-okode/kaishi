@@ -85,6 +85,39 @@ body.login .signup-container {
     z-index: 10;
     width: 100%;
     padding: 30px;
-    top: 30%;
+    top: 40%;
     margin-top: -150px;
+}
+
+.app-container.expanded .content-container .navbar-top {
+    padding-left: 0px;
+}
+
+.app-container .content-container .navbar-top {
+    padding-left: 0px;
+}
+
+.login-btn{
+    padding: 12px 21px;
+    font-size: 14px;
+    line-height: 1.57142857;
+    border-radius: 3px;
+    -webkit-transition: border .2s linear,color .2s linear,width .2s linear,background-color .2s linear;
+    transition: border .2s linear,color .2s linear,width .2s linear,background-color .2s linear;
+    -webkit-font-smoothing: subpixel-antialiased;
+}
+
+.login-btn-info {
+    color: #fff;
+    font-weight: bolder;
+    background-color: #01242b;
+    border-color: #01242b;
+}
+
+
+.login-btn-signup {
+    color: #01242b;
+    font-weight: bolder;
+    background-color: #ffffff;
+    border: solid 2px#7de38d;
 }

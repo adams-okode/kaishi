@@ -5,6 +5,15 @@
     <h3>Free Sign Up</h3>
     <form method="POST" action="{{ route('voyager.do.front.register') }}">
         {{ csrf_field() }}
+        @if(!$errors->isEmpty())
+        <div class="alert alert-red">
+            <ul class="list-unstyled">
+                @foreach($errors->all() as $err)
+                <li>{{ $err }}</li>
+                @endforeach
+            </ul>
+        </div>
+        @endif
         <div class="form-group form-group-default" id="nameGroup">
             <label>Name</label>
             <div class="controls">
@@ -34,29 +43,16 @@
                 <input type="password" onkeyup="passwordMatch(this)" name="confirm_password"
                     placeholder="Confirm Password" class="form-control" required>
                 <div id="passwordCheckDescription"></div>
-
             </div>
         </div>
-
         <livewire:admin.site-register>
-            
-        <a href="{{ route('voyager.login') }}" class="btn btn-success pull-right">
-            <span class="signin">Sign In</span>
+        <div style="clear:both"></div>
+        <a href="{{ route('voyager.login') }}">
+            <span class="signin">Sign in to an existing Kaishi Account</span>
         </a>
-
     </form>
 
-    <div style="clear:both"></div>
-
-    @if(!$errors->isEmpty())
-    <div class="alert alert-red">
-        <ul class="list-unstyled">
-            @foreach($errors->all() as $err)
-            <li>{{ $err }}</li>
-            @endforeach
-        </ul>
-    </div>
-    @endif
+  
 
 </div> <!-- .login-container -->
 @endsection

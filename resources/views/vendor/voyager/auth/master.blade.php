@@ -16,11 +16,20 @@
     
     <style>
         body {
-            background-image:url('{{ asset("blog/default/assets/img/illustrations/register.svg") }}');
+           
             background-color: {{ Voyager::setting("admin.bg_color", "#FFFFFF" ) }};
         }
         body.login .login-sidebar {
             border-top:5px solid {{ config('voyager.primary_color','#22A7F0') }};
+        }
+        body.login .right-bar {
+            background-image: url('{{ asset("kaishi-logo/vector/default.svg") }}');
+            background-repeat: no-repeat;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+            height: 100vh;
         }
         @media (max-width: 767px) {
             body.login .login-sidebar {
@@ -44,26 +53,24 @@
 <body class="login">
 <div class="container-fluid">
     <div class="row">
-        <div class="faded-bg animated"></div>
-        <div class="hidden-xs col-sm-7 col-md-8">
-            <div class="clearfix">
-                <div class="col-sm-12 col-md-10 col-md-offset-2">
-                    <div class="logo-title-container">
-                       
-                        <img class="img-responsive pull-left flip logo hidden-xs animated fadeIn" src="{{ asset('blog/default/assets/img/illustrations/register.svg') }}" alt="Logo Icon">
-                        
-                        <div class="copy animated fadeIn">
-                            <h1>Kaishi</h1>
-                            <p>{{ Voyager::setting('admin.description', __('voyager::login.welcome')) }}</p>
-                        </div>
-                    </div> <!-- .logo-title-container -->
-                </div>
-            </div>
+        <!-- <div class="faded-bg animated"></div> -->
+        <div class="col-sm-7 col-md-6 right-bar"> 
         </div>
 
-        <div class="col-xs-12 col-sm-5 col-md-4 login-sidebar">
-           @yield('content')
+        <div style="box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+                    transition: all 0.3s cubic-bezier(.25,.8,.25,1);" class="col-xs-12 col-sm-5 col-md-4 login-sidebar">
+            <!-- <div class="container">
+                <img style="height: auto;
+                        max-width: 250px;
+                        margin: auto;
+                        margin-left: 25%;
+                        padding-top: 155px;
+                        padding-bottom: 0px;" class="img-responsive pull-left flip hidden-xs animated fadeIn" src="{{ asset('kaishi-logo/vector/default-monochrome.svg') }}" alt="Logo Icon">
+            </div> -->
+            @yield('content')
         </div> <!-- .login-sidebar -->
+        <div class="col-md-2 right-bar"> 
+        </div>
     </div> <!-- .row -->
 </div> <!-- .container-fluid -->
 @yield('post_js')
