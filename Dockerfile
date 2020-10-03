@@ -34,12 +34,12 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 
 RUN chown -R www-data:www-data /var/www
 
-RUN chmod -R 777 bootstrap/cache/
-
 RUN chmod -R 755 /var/www
 
 # Copy existing application directory contents
 COPY . /var/www/ 
+
+RUN chmod -R 777 bootstrap/cache/
 
 RUN rm -rf .env && cp .env.example .env
 
