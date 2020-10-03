@@ -10,10 +10,7 @@ use TCG\Voyager\Facades\Voyager;
 
 $namespacePrefix = '\\' . config('voyager.controllers.namespace') . '\\';
 
-Route::domain('app.' . env('APP_DOMAIN'))->middleware([
-    'subdomain.route.excempt',
-])->group(function () use ($namespacePrefix) {
-
+$routes = function () use ($namespacePrefix) {
     Route::name('voyager.')->group(function () use ($namespacePrefix) {
 
         event(new Routing());
@@ -25,9 +22,9 @@ Route::domain('app.' . env('APP_DOMAIN'))->middleware([
             $app = require dirname(__DIR__, 1) . '/bootstrap/app.php';
 
             $app->make('Illuminate\Contracts\Http\Kernel')->handle(Illuminate\Http\Request::capture());
-        
+
             $id = \Crypt::decryptString($_COOKIE[$app['config']['session.cookie']]);
-            
+
             $app['session']->driver()->setId($id);
             $app['session']->driver()->start();
 
@@ -159,5 +156,6 @@ Route::domain('app.' . env('APP_DOMAIN'))->middleware([
 
         event(new RoutingAfter());
     });
+};
 
-});
+Route::group(['prefix' => 'app'], $routes);

@@ -17,7 +17,7 @@ if (!function_exists('menu')) {
 if (!function_exists('voyager_asset')) {
     function voyager_asset($path, $secure = null)
     {
-        return route('voyager.voyager_assets').'?path='.urlencode($path);
+        return app('url')->asset('vendor/voyager/' . $path, $secure);
     }
 }
 
@@ -26,9 +26,9 @@ if (!function_exists('get_file_name')) {
     {
         preg_match('/(_)([0-9])+$/', $name, $matches);
         if (count($matches) == 3) {
-            return Illuminate\Support\Str::replaceLast($matches[0], '', $name).'_'.(intval($matches[2]) + 1);
+            return Illuminate\Support\Str::replaceLast($matches[0], '', $name) . '_' . (intval($matches[2]) + 1);
         } else {
-            return $name.'_1';
+            return $name . '_1';
         }
     }
 }
