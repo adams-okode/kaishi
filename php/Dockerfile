@@ -31,20 +31,3 @@ RUN docker-php-ext-install gd
 
 # Install composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
-
-RUN chown -R www-data:www-data /var/www
-RUN chmod -R 755 /var/www
-
-# Copy existing application directory contents
-COPY . /var/www/ 
-
-RUN rm -rf .env && cp .env.example .env
-
-RUN composer install
-
-RUN chown -R www-data:www-data /var/www/storage
-
-# Expose port 9000 and start php-fpm server
-EXPOSE 9000
-
-CMD [ "sh", "-c", "php artisan key:generate && php artisan view:clear && composer dump-autoload && php-fpm" ]
