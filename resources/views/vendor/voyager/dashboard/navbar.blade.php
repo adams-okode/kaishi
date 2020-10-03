@@ -40,12 +40,12 @@
             <li class="dropdown profile">
                 <a href="#" class="dropdown-toggle text-right" data-toggle="dropdown" role="button"
                    aria-expanded="false">
-                    <livewire:admin.default-avatar>
+                <livewire:admin.default-avatar>
                     <span class="caret"></span>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-animated">
                     <li class="profile-img">
-                        <livewire:admin.default-avatar>
+                    <livewire:admin.default-avatar>
                         <div class="profile-body">
                             <h5>{{ Auth::user()->name }}</h5>
                         </div>
