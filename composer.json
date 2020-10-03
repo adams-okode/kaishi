@@ -31,7 +31,6 @@
         "guzzlehttp/guzzle": "^7.0.1",
         "kaishi/voyager": "*",
         "laravel/framework": "^8.0",
-        "laravel/scout": "^8.3",
         "laravel/tinker": "^2.0",
         "league/flysystem-aws-s3-v3": "^1.0",
         "livewire/livewire": "^2.2",
