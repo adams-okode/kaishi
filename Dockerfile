@@ -39,7 +39,7 @@ RUN chmod -R 755 /var/www
 # Copy existing application directory contents
 COPY . /var/www/ 
 
-RUN chmod -R 777 bootstrap/cache/
+RUN chmod -R 644 bootstrap/cache
 
 RUN rm -rf .env && cp .env.example .env
 
