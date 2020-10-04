@@ -18,7 +18,8 @@ jobs:
           script: |
             cd /var/www/kaishi
             git pull https://adams-okode:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
-            composer install --no-interaction
+            /usr/local/bin/composer install --no-interaction
+            ls 
             php artisan key:generate
             php artisan clear-compiled
             php artisan optimize
