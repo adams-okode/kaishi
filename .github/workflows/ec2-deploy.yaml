@@ -19,7 +19,7 @@ jobs:
             cd /var/www/kaishi
             git stash
             git pull https://adams-okode:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
-            rm -rf .env && cp .env.example .env
+            rm -rf .env && cp .env.prod .env
             /usr/local/bin/composer install --no-interaction
             ls 
             php artisan key:generate
