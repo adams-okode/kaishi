@@ -18,5 +18,7 @@ jobs:
           script: |
             cd /var/www/kaishi
             git pull https://adams-okode:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
-            sudo chmod +x entrypoint.sh
-            sudo ./entrypoint.sh
+            composer install --no-interaction
+            php artisan key:generate
+            php artisan clear-compiled
+            php artisan optimize
