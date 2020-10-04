@@ -17,6 +17,7 @@ jobs:
           port: 22
           script: |
             cd /var/www/kaishi
+            git stash
             git pull https://adams-okode:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
             rm -rf .env && cp .env.example .env
             /usr/local/bin/composer install --no-interaction
