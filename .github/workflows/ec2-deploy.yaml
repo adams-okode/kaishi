@@ -4,21 +4,19 @@ on:
     branches:
       - master
 jobs:
-
   build:
     name: Build
     runs-on: ubuntu-latest
     steps:
-    - name: executing remote ssh commands using password
-      uses: appleboy/ssh-action@master
-      with:
-        host: 54.154.243.219
-        username: ec2-user
-        key: ${{ secrets.SSH_KEY }}
-        port: 22
-        script: |
-          sudo su
-          cd /var/www/kaishi
-          git pull
-          chmod +x entrypoint.sh
-          ./entrypoint 
+      - name: executing remote ssh commands using password
+        uses: appleboy/ssh-action@master
+        with:
+          host: 54.154.243.219
+          username: ec2-user
+          key: ${{ secrets.SSH_KEY }}
+          port: 22
+          script: |
+            cd /var/www/kaishi
+            git pull https://adams-okode:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
+            sudo chmod +x entrypoint.sh
+            sudo ./entrypoint.sh
