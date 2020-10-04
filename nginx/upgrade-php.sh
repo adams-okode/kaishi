@@ -64,7 +64,7 @@ yum install -y php73-php-common
 yum install -y php73-php-devel
 # yum install -y php73-php-embedded
 yum install -y php73-php-enchant
-# yum install -y php73-php-fpm
+yum install -y php73-php-fpm
 # Gd will require you to build libpng
 # yum install -y php73-php-geos
 # yum install -y php73-php-gmp
