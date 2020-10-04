@@ -1,0 +1,39 @@
+version: "3.8"
+services:
+  app:
+    container_name: kaishi-app-container
+    build: 
+      dockerfile: Dockerfile.apache
+      context: .
+    ports:
+      - "80:80"
+    environment:
+      SERVICE_NAME: kaishi-app-container
+      SERVICE_TAGS: dev
+    # working_dir: /var/www
+    # volumes:
+    #   - ./:/var/www
+    networks:
+      - app-network
+
+  # nginx:
+  #   image: nginx:alpine
+  #   volumes:
+  #     - ./:/var/www
+  #     - ./nginx/conf.d/:/etc/nginx/conf.d/
+  #   ports:
+  #     - "80:80"
+  #   depends_on:
+  #     - app
+  #   networks:
+  #     - app-network
+    
+    
+#Docker Networks
+networks:
+  app-network:
+    driver: bridge
+
+
+ 
+

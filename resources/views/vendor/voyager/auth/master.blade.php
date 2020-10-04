@@ -6,6 +6,8 @@
     <meta name="robots" content="none" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
     <meta name="description" content="admin login">
+    <!-- CSRF token -->
+   
     <title>@yield('title', 'Admin - '.Voyager::setting("admin.title"))</title>
     <link rel="stylesheet" href="{{ voyager_asset('css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('admin/assets/css/app.css') }}">
@@ -13,10 +15,10 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-rtl/3.4.0/css/bootstrap-rtl.css">
         <link rel="stylesheet" href="{{ voyager_asset('css/rtl.css') }}">
     @endif
-    
+
     <style>
         body {
-           
+
             background-color: {{ Voyager::setting("admin.bg_color", "#FFFFFF" ) }};
         }
         body.login .login-sidebar {
@@ -54,7 +56,7 @@
 <div class="container-fluid">
     <div class="row">
         <!-- <div class="faded-bg animated"></div> -->
-        <div class="col-sm-7 col-md-6 right-bar"> 
+        <div class="col-sm-7 col-md-6 right-bar">
         </div>
 
         <div style="box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
@@ -69,7 +71,7 @@
             </div> -->
             @yield('content')
         </div> <!-- .login-sidebar -->
-        <div class="col-md-2 right-bar"> 
+        <div class="col-md-2 right-bar">
         </div>
     </div> <!-- .row -->
 </div> <!-- .container-fluid -->

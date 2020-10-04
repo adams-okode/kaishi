@@ -1,0 +1,19 @@
+name: Manual Build
+on:
+  push:
+    branches:
+      - master
+jobs:
+
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+    - name: executing remote ssh commands using password
+      uses: appleboy/ssh-action@master
+      with:
+        host: 54.154.243.219
+        username: ec2-user
+        key: ${{ secrets.KEY }}
+        port: 22
+        script: whoami
