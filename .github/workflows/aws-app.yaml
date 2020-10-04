@@ -27,7 +27,7 @@ name: Kaishi Deploy
 on:
   push:
     branches:
-      - master
+      - ecs
 
 env:
   AWS_DEFAULT_REGION: eu-west-1

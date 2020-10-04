@@ -5,7 +5,7 @@ services:
     build:
       context: .
     ports:
-      - "9000"
+      - "80:80"
     environment:
       SERVICE_NAME: kaishi-app-container
       SERVICE_TAGS: dev
@@ -13,24 +13,38 @@ services:
     volumes:
       - ./:/var/www
     networks:
-      - app-network
+      app-network:
+        ipv4_address: 172.28.1.1
 
-  nginx:
-    image: nginx:alpine
-    volumes:
-      - ./:/var/www
-      - ./nginx/conf.d/:/etc/nginx/conf.d/
-    ports:
-      - "8080:80"
-    depends_on:
-      - app
-    networks:
-      - app-network
-    
-    
+  # nginx:
+  #   image: nginx:alpine
+  #   volumes:
+  #     - ./:/var/www
+  #     - ./nginx/conf.d/:/etc/nginx/conf.d/
+  #   ports:
+  #     - "80:80"
+  #   depends_on:
+  #     - app
+  #   networks:
+  #     app-network:
+  #       ipv4_address: 172.28.1.4
+        
+  # redis:
+  #   image: redis:latest
+  #   command: ["redis-server", "/usr/local/etc/redis/redis.conf"]
+  #   volumes:
+  #     - ./redis/redis.conf:/usr/local/etc/redis/redis.conf
+  #   networks:
+  #     app-network:
+  #       ipv4_address: 172.28.1.2
+
 #Docker Networks
 networks:
   app-network:
-    driver: bridge
- 
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.28.0.0/16
 
+volumes:
+  data:

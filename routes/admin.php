@@ -145,4 +145,8 @@ $routes = function () use ($namespacePrefix) {
     });
 };
 
-Route::group(['prefix' => 'app'], $routes);
+Route::group([
+    'domain' => env('APP_DOMAIN'),
+    'middleware' => ['subdomain.route.excempt'],
+    'prefix' => 'a',
+], $routes);
