@@ -43,7 +43,7 @@ RUN rm -rf .env && cp .env.example .env
 
 RUN composer install
 
-RUN chown -R www-data:www-data /var/www/storage
+RUN chown -R www-data:www-data /var/www/storage /var/www/bootstrap/cache
 
 # Expose port 9000 and start php-fpm server
 EXPOSE 9000
