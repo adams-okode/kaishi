@@ -1,4 +1,4 @@
-FROM php:7.3-fpm
+FROM php:7.4-fpm
 
 # Copy composer.lock and composer.json
 COPY composer.lock composer.json /var/www/
@@ -48,4 +48,4 @@ RUN chown -R www-data:www-data /var/www/storage /var/www/bootstrap/cache
 # Expose port 9000 and start php-fpm server
 EXPOSE 9000
 
-CMD [ "sh", "-c", "php artisan key:generate && php artisan view:clear && php artisan cache:clear && composer dump-autoload && php-fpm" ]
+CMD [ "sh", "-c", "php artisan key:generate && php artisan view:clear && composer dump-autoload && php-fpm" ]
